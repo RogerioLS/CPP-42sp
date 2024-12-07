@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SedIsForLosers.hpp                                 :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 10:43:06 by roglopes          #+#    #+#             */
-/*   Updated: 2024/12/07 10:48:02 by roglopes         ###   ########.fr       */
+/*   Created: 2024/12/07 17:41:51 by roglopes          #+#    #+#             */
+/*   Updated: 2024/12/07 18:04:16 by roglopes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 # include <string>
-# include <fstream>
 # include <iostream>
 
 /**
- * @brief Class to replace all occurrences of a string in a file
+ * @brief A class that automates Harl's complaints based on severity level.
  */
-class	SedIsForLosers
+class	Harl
 {
 	public:
-		static bool	replace(std::string &filename, const std::string &s1, const std::string &s2);
+		/**
+		 * @brief Calls the appropriate function based on the given complaint level.
+		 * 
+		 * @param level The level of complaint ("DEBUG", "INFO", "WARNING", or "ERROR").
+		*/
+		void	complain(const std::string &level );
 
 	private:
-		static std::string	replaceOccurrences(const std::string &content, const std::string &s1, const std::string &s2);
+		void	debug( void );
+		void	info( void );
+		void	warning( void );
+		void	error( void );
+		typedef void (Harl::*HarlFunc)( void );
 };
