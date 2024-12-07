@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:15:02 by roglopes          #+#    #+#             */
-/*   Updated: 2024/11/30 16:18:30 by roglopes         ###   ########.fr       */
+/*   Updated: 2024/12/03 00:10:35 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class Account {
 		~Account( void );
 
 		void	makeDeposit( int deposit );
-		bool	makeWithdrawal( int withdrawal);
+		bool	makeWithdrawal( int withdrawal );
 		int		checkAmount( void ) const;
 		void	displayStatus( void ) const;
 

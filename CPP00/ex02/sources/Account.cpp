@@ -3,22 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:44:35 by roglopes          #+#    #+#             */
-/*   Updated: 2024/11/30 17:30:53 by roglopes         ###   ########.fr       */
+/*   Updated: 2024/12/03 00:08:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Account.hpp"
 
-// Initialisation of the static variable
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-// Constructor
+/**
+ * @brief Constructs an Account object with an initial deposit.
+ * 
+ * Initializes the account with a unique index and sets the initial balance.
+ * Updates the static variables tracking the total number of accounts and total amount.
+ * 
+ * @param initial_deposit The initial amount deposited into the account.
+ */
 Account::Account(int initial_deposit)
 : _accountIndex(_nbAccounts), _amount(initial_deposit),
 _nbDeposits(0), _nbWithdrawals(0)
@@ -29,14 +35,25 @@ _nbDeposits(0), _nbWithdrawals(0)
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created" << std::endl;
 }
 
-// Destructor
+/**
+ * @brief Destructor for the Account class.
+ * 
+ * Logs the account closure and updates static counters.
+ */
 Account::~Account(void)
 {
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
-// makeDeposit
+/**
+ * @brief Deposits a specified amount into the account.
+ * 
+ * Updates the account balance and the number of deposits made. Also updates 
+ * the static counters for the total amount and total number of deposits.
+ * 
+ * @param deposit The amount to deposit.
+ */
 void Account::makeDeposit(int deposit)
 {
 	_displayTimestamp();
@@ -48,7 +65,15 @@ void Account::makeDeposit(int deposit)
 	std::cout << ";amount:" << _amount << ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
-// makeWithdrawal
+/**
+ * @brief Withdraws a specified amount from the account.
+ * 
+ * Checks if the withdrawal amount is available. If not, logs a "refused" message.
+ * Otherwise, updates the account balance and the number of withdrawals.
+ * 
+ * @param withdrawal The amount to withdraw.
+ * @return true if the withdrawal was successful, false otherwise.
+ */
 bool Account::makeWithdrawal(int withdrawal)
 {
 	_displayTimestamp();
@@ -69,13 +94,21 @@ bool Account::makeWithdrawal(int withdrawal)
 	return (true);
 }
 
-// checkAmount
-int Account::checkAmount(void) const
+/**
+ * @brief Returns the current balance of the account.
+ * 
+ * @return int The current balance.
+ */
+int Account::checkAmount() const
 {
 	return (_amount);
 }
 
-// displayStatus
+/**
+ * @brief Displays the current status of the account.
+ * 
+ * Logs the account index, balance, number of deposits, and number of withdrawals.
+ */
 void Account::displayStatus(void) const
 {
 	_displayTimestamp();
@@ -86,7 +119,12 @@ void Account::displayStatus(void) const
 			<< std::endl;
 }
 
-// displayAccountsInfos
+/**
+ * @brief Displays aggregated information for all accounts.
+ * 
+ * Includes the total number of accounts, total amount across all accounts, 
+ * and the total number of deposits and withdrawals.
+ */
 void Account::displayAccountsInfos()
 {
 	_displayTimestamp();
@@ -96,7 +134,11 @@ void Account::displayAccountsInfos()
 			<< ";withdrawals:" << _totalNbWithdrawals
 			<< std::endl;
 }
-// displayTimestamp
+/**
+ * @brief Logs the current timestamp in a specific format.
+ * 
+ * Used to timestamp all account operations.
+ */
 void Account::_displayTimestamp()
 {
 	std::time_t now = std::time(0);

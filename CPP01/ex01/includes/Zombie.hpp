@@ -5,29 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 00:08:58 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/06 23:25:40 by codespace        ###   ########.fr       */
+/*   Created: 2024/12/06 23:22:00 by codespace         #+#    #+#             */
+/*   Updated: 2024/12/06 23:43:26 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <string>
+# include <string>
+# include <iostream>
 
+/**
+ * @brief Zombie class declaration and capacity to announce itself.
+ */
 class Zombie
 {
 	public:
-		Zombie(const std::string& name);
-		~Zombie(void);
-		/**
-		 * @brief Announce the presence of the zombie.
-		 */
-		void	announce() const;
+		Zombie(); // Default constructor
+		~Zombie(); // Default destructor
+
+		void	setName(const std::string& name); // Set the name of the zombie.
+		void	announce() const;  // Announce the presence of the zombie.
 
 	private:
 		std::string	_name;
 };
 
-Zombie*	newZombie(const std::string& name);
-void	randomChump(const std::string& name);
+Zombie*	zombieHorde(int N, std::string name); // Create a horde of zombies.

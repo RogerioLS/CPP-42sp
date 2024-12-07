@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 00:23:36 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/29 01:13:10 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/02 23:48:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <string>
 # include <iomanip>
 
+/**
+ * @class Contact
+ * @brief Represents a single contact in the phonebook.
+ * 
+ * This class stores the details of a contact, including first name, last name,
+ * nickname,phone number, and darkest secret. It provides methods to set and
+ * display these details.
+ */
 class Contact {
 	public:
 		Contact();

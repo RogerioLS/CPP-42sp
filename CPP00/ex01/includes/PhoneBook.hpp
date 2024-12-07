@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 00:23:26 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/29 00:27:25 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/02 23:55:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <iomanip>
 # include <string>
 
+/**
+ * @class PhoneBook
+ * @brief Manages a collection of contacts.
+ * 
+ * This class stores up to 8 contacts and allows the user to add new contacts,
+ * search existing ones,
+ * and display contact details.
+ */
 class PhoneBook {
 	public:
 		PhoneBook();

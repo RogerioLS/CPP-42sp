@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 00:08:58 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/06 23:25:40 by codespace        ###   ########.fr       */
+/*   Created: 2024/12/06 23:41:23 by codespace         #+#    #+#             */
+/*   Updated: 2024/12/06 23:48:59 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/Zombie.hpp"
 
-#include <iostream>
-#include <string>
-
-class Zombie
+int	main()
 {
-	public:
-		Zombie(const std::string& name);
-		~Zombie(void);
-		/**
-		 * @brief Announce the presence of the zombie.
-		 */
-		void	announce() const;
+	int	N;
 
-	private:
-		std::string	_name;
-};
+	N = 5;
+	std::string name = "Zombie";
 
-Zombie*	newZombie(const std::string& name);
-void	randomChump(const std::string& name);
+	Zombie* horde = zombieHorde(N, name);
+	if (horde != NULL)
+	{
+		for (int i = 0; i < N; i++)
+		{
+			horde[i].announce();
+		}
+		delete[] horde;
+	}
+	return (0);
+}
