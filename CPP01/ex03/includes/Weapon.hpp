@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 00:13:26 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/07 00:22:30 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/11 19:39:08 by roglopes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ class	Weapon
 {
 	public:
 		Weapon(const std::string &type);
+		~Weapon();
 		const std::string	&getType() const;
 		void				setType(const std::string &newType);
 
