@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:08:58 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/06 23:25:40 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/11 18:49:02 by roglopes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Zombie
 {
 	public:
 		Zombie(const std::string& name);
-		~Zombie(void);
+		~Zombie( void );
 		/**
 		 * @brief Announce the presence of the zombie.
 		 */
