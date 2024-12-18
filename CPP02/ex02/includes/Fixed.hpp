@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 15:36:43 by roglopes          #+#    #+#             */
-/*   Updated: 2024/12/15 15:45:33 by roglopes         ###   ########.fr       */
+/*   Updated: 2024/12/17 00:08:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class	Fixed
 		int		toInt() const;
 		float	toFloat() const;
 
-		// Static methods
+		// Min and max functions
 		static Fixed	&min(Fixed &a, Fixed &b);
 		static const Fixed	&min(const Fixed &a, const Fixed &b);
 		static Fixed	&max(Fixed &a, Fixed &b);

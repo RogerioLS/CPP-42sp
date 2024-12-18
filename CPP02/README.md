@@ -159,3 +159,82 @@ A sobrecarga permite que o objeto Fixed seja impresso como um número flutuante,
 
 ---
 
+Ex02: Now We’re Talking
+O Que Este Exercício Quer Ensinar
+Propósito:
+- Este exercício avança o entendimento sobre a manipulação de números de ponto fixo, adicionando operadores de comparação, operadores aritméticos e operadores de incremento/decremento. Também apresenta funções estáticas para determinar o menor e o maior número entre dois valores, consolidando a ideia de sobrecarga de operadores e métodos utilitários.
+
+Lições:
+Sobrecarga de Operadores:
+- Comparação: >, <, >=, <=, ==, !=.
+- Operadores Aritméticos: +, -, *, /.
+- Incremento e Decremento: Pré-incremento (++var), pós-incremento (var++), pré-decremento (--var), pós-decremento (var--).
+
+Funções Estáticas:
+- Funções utilitárias min e max para comparar dois objetos Fixed, retornando o menor ou o maior deles. Ensina o uso de referências constantes e estáticas.
+
+Ad-hoc Polimorfismo:
+- Uso de operadores sobrecarregados para permitir múltiplos comportamentos (como soma, comparação, etc.) sem alterar a interface da classe.
+
+Controle de Precisão:
+Demonstra a manipulação eficiente de números de ponto fixo ao implementar cálculos aritméticos e conversões.
+
+```c++
+#### Objetivo:
+Implementar uma classe `Fixed` que expanda a funcionalidade para incluir:
+**Atributos Privados:**
+- `int _fixedPointValue`: Representa o número em ponto fixo.
+- `static const int _fractionalBits = 8`: Número de bits fracionários.
+
+**Métodos Públicos:**
+1. **Construtores:**
+   - Padrão (inicializa com 0).
+   - Inteiro (converte de inteiro para ponto fixo).
+   - Flutuante (converte de float para ponto fixo).
+   - Cópia (inicializa com base em outro objeto).
+
+2. **Operadores Sobrecarga:**
+   - Comparação: `>`, `<`, `>=`, `<=`, `==`, `!=`.
+   - Aritméticos: `+`, `-`, `*`, `/`.
+   - Incremento e Decremento: Pré e pós.
+
+3. **Conversão:**
+   - `toFloat()`: Converte de ponto fixo para ponto flutuante.
+   - `toInt()`: Converte de ponto fixo para inteiro.
+
+4. **Funções Utilitárias:**
+   - `min` e `max`: Retorna o menor ou maior valor entre dois objetos `Fixed`.
+   
+5. **Manipulação do Valor Bruto:**
+   - `getRawBits()`: Retorna o valor bruto.
+   - `setRawBits(int const raw)`: Define o valor bruto.
+
+6. **Operador de Saída:**
+   - `<<`: Exibe um objeto `Fixed` no formato de ponto flutuante.
+```
+
+Explicação Detalhada
+
+1. Sobrecarga de Operadores de Comparação
+- Facilita a comparação de objetos Fixed como se fossem tipos primitivos.
+Por exemplo, if (a > b) verifica qual objeto tem maior valor.
+2. Sobrecarga de Operadores Aritméticos
+- Permite usar operadores matemáticos como +, -, * e / diretamente entre objetos Fixed.
+- Isso simplifica a manipulação de números de ponto fixo.
+3. Operadores de Incremento e Decremento
+- Pré-incremento (++var): Incrementa o valor antes de usá-lo.
+- Pós-incremento (var++): Incrementa o valor após usá-lo.
+4. Funções Estáticas min e max
+- Retornam o menor ou o maior objeto entre dois valores.
+- const Fixed &: Garante que objetos constantes possam ser comparados.
+5. Cuidado com Divisão
+- Divisão por zero é permitida e pode causar falhas. Este comportamento é aceitável para o exercício.
+
+Por Que Sobrecarga de Operadores é Útil?
+- Ela torna a classe mais intuitiva de usar, permitindo que objetos Fixed se comportem como tipos nativos.
+
+Por Que Incremento e Decremento?
+- Simulam operações aritméticas finas, importantes em cálculos precisos, como gráficos e física.
+
+Por Que Funções min e max?
+- São úteis para encontrar limites ou realizar cálculos de otimização entre múltiplos objetos.

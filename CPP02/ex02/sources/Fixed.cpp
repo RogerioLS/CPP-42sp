@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 15:41:55 by roglopes          #+#    #+#             */
-/*   Updated: 2024/12/15 15:55:53 by roglopes         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:43:41 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,239 @@ float Fixed::toFloat() const
 int Fixed::toInt() const
 {
 	return this->_fixedPointValue >> _fractionalBits;
+}
+
+/**
+ * @brief Comparison operator
+ */
+/**
+ * @brief Comparison operator
+ * 
+ * @param other
+ * @return true
+ */
+bool	Fixed::operator>(const Fixed &other) const
+{
+	return (this->_fixedPointValue > other._fixedPointValue);
+}
+
+/**
+ * @brief Comparison operator
+ * 
+ * @param other
+ * @return true
+ */
+bool	Fixed::operator<(const Fixed &other) const
+{
+	return (this->_fixedPointValue < other._fixedPointValue);
+}
+
+/**
+ * @brief Comparison operator
+ * 
+ * @param other
+ * @return true
+ */
+bool	Fixed::operator>=(const Fixed &other) const
+{
+	return (this->_fixedPointValue >= other._fixedPointValue);
+}
+
+/**
+ * @brief Comparison operator
+ * 
+ * @param other
+ * @return true
+ */
+bool	Fixed::operator<=(const Fixed &other) const
+{
+	return (this->_fixedPointValue <= other._fixedPointValue);
+}
+
+/**
+ * @brief Comparison operator
+ * 
+ * @param other
+ * @return true
+ */
+bool	Fixed::operator==(const Fixed &other) const
+{
+	return (this->_fixedPointValue == other._fixedPointValue);
+}
+
+/**
+ * @brief Comparison operator
+ * 
+ * @param other
+ * @return true
+ */
+bool	Fixed::operator!=(const Fixed &other) const
+{
+	return (this->_fixedPointValue != other._fixedPointValue);
+}
+
+/**
+ * @brief Arithmetic operator
+ */
+/**
+ * @brief Arithmetic operator
+ * 
+ * @param other
+ * @return Fixed
+ */
+Fixed	Fixed::operator+(const Fixed &other) const
+{
+	return Fixed(this->toFloat() + other.toFloat());
+}
+
+/**
+ * @brief Arithmetic operator
+ * 
+ * @param other
+ * @return Fixed
+ */
+Fixed	Fixed::operator-(const Fixed &other) const
+{
+	return Fixed(this->toFloat() - other.toFloat());
+}
+
+/**
+ * @brief Arithmetic operator
+ * 
+ * @param other
+ * @return Fixed
+ */
+Fixed	Fixed::operator*(const Fixed &other) const
+{
+	return Fixed(this->toFloat() * other.toFloat());
+}
+
+/**
+ * @brief Arithmetic operator
+ * 
+ * @param other
+ * @return Fixed
+ */
+Fixed	Fixed::operator/(const Fixed &other) const
+{
+	if (other._fixedPointValue == 0)
+	{
+		std::cerr << "Error: division by zero" << std::endl;
+		return Fixed(0);
+	}
+	return Fixed(this->toFloat() / other.toFloat());
+}
+
+/**
+ * @brief Increment operator
+ */
+/**
+ * @brief Increment operator
+ * 
+ * @return Fixed&
+ */
+Fixed	&Fixed::operator++()
+{
+	this->_fixedPointValue++;
+	return (*this);
+}
+
+/**
+ * @brief Increment operator
+ * 
+ * @param int
+ * @return Fixed
+ */
+Fixed	Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	this->_fixedPointValue++;
+	return (tmp);
+}
+
+/**
+ * @brief Decrement operator
+ */
+/**
+ * @brief Decrement operator
+ * 
+ * @return Fixed&
+ */
+Fixed	&Fixed::operator--()
+{
+	this->_fixedPointValue--;
+	return (*this);
+}
+
+/**
+ * @brief Decrement operator
+ * 
+ * @param int
+ * @return Fixed
+ */
+Fixed	Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	this->_fixedPointValue--;
+	return (tmp);
+}
+
+/**
+ * @brief Min and Max static methods
+ */
+/**
+ * @brief Min and Max static methods
+ * 
+ * @param a
+ * @param b
+ * @return Fixed&
+ */
+Fixed	&Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a < b ? a : b);
+}
+
+/**
+ * @brief Min and Max static methods
+ * 
+ * @param a
+ * @param b
+ * @return const Fixed&
+ */
+const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
+{
+	return (a < b ? a : b);
+}
+
+/**
+ * @brief Min and Max static methods
+ * 
+ * @param a
+ * @param b
+ * @return Fixed&
+ */
+Fixed	&Fixed::max(Fixed &a, Fixed &b)
+{
+	return (a > b ? a : b);
+}
+
+/**
+ * @brief Min and Max static methods
+ * 
+ * @param a
+ * @param b
+ * @return const Fixed&
+ */
+const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
+{
+	return (a > b ? a : b);
+}
+
+/**
+ * @brief Output stream operator
+ */
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
+{
+	out << fixed.toFloat();
+	return (out);
 }
