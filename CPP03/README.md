@@ -179,4 +179,5 @@ Herda corretamente os atributos e comportamentos da classe base ClapTrap.
 Assim, o comportamento padrão gerado pelo compilador é suficiente para gerenciar o construtor de cópia e operador de atribuição.
 Se, no futuro, ScavTrap precisasse de atributos exclusivos ou lógica adicional, poderíamos revisitar a implementação e adicionar explicitamente esses métodos.
 
-Espero que isso esclareça! 🚀
+---
+
