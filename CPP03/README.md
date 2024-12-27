@@ -1,4 +1,3 @@
-
 ### CPP03: Resumo, Conceitos, Propósitos e Perguntas Respondidas
 
 Ex00: Aaaaand... OPEN!
@@ -181,3 +180,44 @@ Se, no futuro, ScavTrap precisasse de atributos exclusivos ou lógica adicional,
 
 ---
 
+Ex02: Repetiteve Work
+
+Neste exercício, vamos continuar explorando herança ao criar uma nova classe derivada, FragTrap, que herda de ClapTrap. Ela será semelhante a ScavTrap, mas com suas próprias mensagens de construção e destruição, atributos diferentes e uma nova funcionalidade especial: highFivesGuys.
+
+O Que Este Exercício Quer Ensinar
+- Herança em C++: Criar classes derivadas e personalizá-las.
+- Chaining de construção/destruição: Como o C++ gerencia a construção e destruição em classes derivadas.
+- Métodos específicos em classes derivadas: Adicionar funcionalidades únicas a uma classe derivada.
+- Uso de polimorfismo básico: Embora não obrigatório aqui, este exercício prepara você para entender a relação entre classes base e derivadas.
+
+```c++
+Objetivo
+Criar uma classe derivada FragTrap que:
+- Herdará de ClapTrap
+- Personalizará construtores, destrutores e valores padrão.
+- Adicionará uma habilidade especial: highFivesGuys.
+Atributos de FragTrap
+- hitPoints = 100
+- energyPoints = 100
+- attackDamage = 30
+Métodos Específicos
+- Construtor Personalizado: Inicializa os atributos herdados com valores específicos.
+- Destrutor: Mostra uma mensagem única ao destruir o objeto.
+- highFivesGuys: Adiciona funcionalidade exclusiva para mostrar uma mensagem positiva de high five.
+```
+
+Perguntas Possíveis na Avaliação
+Como funciona o chaining de construção/destruição?
+- A construção de uma classe derivada sempre começa pela classe base, seguindo até a derivada. Na destruição, a ordem é inversa: destrói-se primeiro a derivada e, por último, a base.
+Por que usamos herança aqui?
+- Para evitar duplicação de código e compartilhar atributos e comportamentos comuns entre diferentes tipos de "Trap".
+Qual a diferença entre ScavTrap e FragTrap?
+- Ambos herdam de ClapTrap, mas têm mensagens, atributos e habilidades especiais diferentes (guardGate para ScavTrap e highFivesGuys para FragTrap).
+Por que não implementamos métodos de cópia em FragTrap?
+- Como FragTrap não possui novos atributos, os métodos gerados automaticamente pelo compilador para cópia e atribuição já são suficientes.
+Como o C++ decide qual método chamar em uma hierarquia?
+- Depende do tipo do objeto. Métodos não virtuais são resolvidos em tempo de compilação, enquanto métodos virtuais são resolvidos em tempo de execução.
+Quais os benefícios da herança neste contexto?
+- Reduz duplicação de código.
+- Centraliza a lógica comum em uma classe base.
+- Facilita a extensão e manutenção do código.
