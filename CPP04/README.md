@@ -52,14 +52,19 @@ Por que usamos virtual em makeSound?
 - Para permitir que o método seja sobrescrito em classes derivadas e chamado polimorficamente.
 O que é polimorfismo?
 - Capacidade de chamar métodos de classes derivadas através de um ponteiro/referência da classe base.
+
 Por que WrongCat não apresenta comportamento polimórfico?
 - Porque não usamos virtual nos métodos de WrongAnimal.
+
 O que acontece se esquecermos de declarar o destrutor como virtual em Animal?
 - Pode causar undefined behavior ao deletar objetos derivados através de ponteiros da classe base.
+
 Por que o WrongCat não usa o método makeSound da própria classe?
 - Porque o método não é virtual na classe base WrongAnimal.
+
 O que acontece ao omitir o destrutor virtual?
 - Se você deletar um objeto derivado usando um ponteiro da classe base, apenas o destrutor da classe base será chamado, causando possíveis vazamentos de memória.
+
 Qual a diferença prática entre WrongCat e Cat?
 - WrongCat não possui polimorfismo, enquanto Cat usa métodos virtuais, permitindo chamadas dinâmicas corretas.
 
@@ -125,12 +130,16 @@ Dúvidas e Respostas Possíveis
 
 Por que usar destrutores virtuais?
 - Garante que o destrutor da subclasse seja chamado, evitando vazamento de memória.
+
 O que é uma cópia profunda?
 - Copia os dados apontados por ponteiros, criando novas instâncias, em vez de copiar apenas o endereço de memória.
+
 Por que a classe Animal não tem Brain?
 - Brain é específico para Dog e Cat. Manter a lógica na subclasse reduz a complexidade na classe base.
+
 Por que usamos new Brain()?
 - Para ilustrar a alocação dinâmica e permitir a prática de gerenciamento de memória.
+
 Qual a diferença entre type ser protected e private?
 - protected permite que classes derivadas acessem diretamente o atributo, enquanto private não.
 
@@ -164,12 +173,16 @@ Métodos Virtuais Puros:
 Perguntas Comuns
 Por que usar uma classe abstrata?
 - Para evitar instanciar classes genéricas que não têm funcionalidade completa, como Animal, e garantir que subclasses implementem métodos específicos.
+
 O que acontece se não implementarmos o método makeSound() na subclasse?
 - A subclasse também será abstrata e não poderá ser instanciada.
+
 Por que declarar makeSound() como = 0?
 - Para forçar todas as subclasses a fornecerem sua própria implementação.
+
 Ainda precisamos do destrutor virtual?
 - Sim, o destrutor virtual garante que o destrutor correto da subclasse será chamado.
+
 Qual é o impacto na herança de transformar Animal em uma classe abstrata?
 - Apenas classes que implementam todos os métodos virtuais puros podem ser instanciadas.
 
@@ -177,12 +190,59 @@ Qual é o impacto na herança de transformar Animal em uma classe abstrata?
 
 # BONUS
 
-ex01:
+`ex01:`
 Por que o destrutor de Animal deve ser virtual?
 - Para garantir que o destrutor da classe derivada seja chamado quando deletamos um objeto da classe derivada por meio de um ponteiro para a classe base.
+
 O que acontece sem virtual?
 - Apenas o destrutor da classe base será chamado, resultando em vazamentos de memória ou recursos não liberados na classe derivada.
+
 Por que a destruição é realizada na ordem inversa da construção?
 - Isso é necessário para garantir que os recursos sejam liberados na ordem inversa à sua alocação, evitando dependências de recursos já destruídos.
+
 O que é um destrutor virtual puro?
 - Um destrutor virtual puro (virtual ~Animal() = 0;) torna a classe abstrata, impedindo que instâncias da classe base sejam criadas diretamente.
+
+`ex02:`
+O que é uma Classe Abstrata?
+- Uma classe abstrata é uma classe que não pode ser instanciada diretamente.
+- Ela serve como uma base para outras classes derivadas.
+- Contém funções virtuais puras, que obrigam as classes derivadas a implementá-las.
+
+Por que Animal precisa ser abstrata?
+- Racionalidade do Design: Um Animal genérico não faz som, mas classes derivadas como Dog ou Cat fazem.
+- Forçar Implementação: Declarar makeSound como virtual pura força todas as classes derivadas de Animal a implementar sua própria versão de makeSound.
+
+O que é uma função virtual pura?
+- É uma função declarada em uma classe base com = 0, que obriga as classes derivadas a implementá-la:
+    - virtual void makeSound() const = 0;
+
+Por que a classe Animal é abstrata?
+- Porque contém uma função virtual pura. Isso impede a criação de instâncias de Animal, forçando o uso de classes derivadas para implementar comportamentos específicos.
+
+O que acontece ao tentar instanciar Animal?
+- Um erro de compilação ocorre, indicando que Animal é abstrata:
+    - cannot declare variable ‘test’ to be of abstract type ‘Animal’
+
+Por que usamos classes abstratas?
+- Forçar a implementação de métodos em classes derivadas.
+Garantir que a classe base sirva apenas como uma interface ou ponto comum para herança.
+
+Por que é necessário que as classes estejam na Forma Canônica Ortodoxa?
+- Para garantir que a classe seja bem projetada, segura, e que cópias e atribuições funcionem corretamente, evitando problemas de gerenciamento de memória.
+
+`Polimorfismo:`
+
+O que é polimorfismo?
+- O polimorfismo é um dos quatro pilares fundamentais da Programação Orientada a Objetos (POO). Ele permite que objetos de diferentes classes derivadas sejam tratados como objetos da classe base, enquanto ainda mantêm seus comportamentos específicos. Em outras palavras, o polimorfismo possibilita que um mesmo método se comporte de maneiras diferentes dependendo do objeto que o invoca.
+- Polimorfismo permite que uma mesma função tenha comportamentos diferentes dependendo da classe que a implementa. No exercício, makeSound é polimórfico porque cada classe derivada (Dog, Cat) tem sua própria implementação.
+- No exercício, o polimorfismo é exemplificado pelo uso de uma classe base abstrata (Animal) com uma função virtual pura (makeSound). A ideia é que cada classe derivada (Dog e Cat) implemente sua própria versão de makeSound. Isso permite que o mesmo código funcione para diferentes tipos de animais, desde que sejam derivados de Animal.
+
+Como o polimorfismo é usado aqui?
+- Animal é a classe base abstrata, e makeSound é uma função virtual pura. Ao chamar makeSound através de um ponteiro para Animal, o método específico da classe derivada é chamado.
+
+Qual é a vantagem do polimorfismo?
+- O código é mais flexível e extensível. Você pode adicionar novos tipos de animais sem alterar a lógica existente.
+
+O que acontece se makeSound não for virtual?
+- A versão de makeSound na classe base (Animal) será chamada, mesmo que o objeto seja uma instância de Dog ou Cat. Isso quebra o comportamento esperado.
