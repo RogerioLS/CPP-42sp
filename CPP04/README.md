@@ -15,10 +15,13 @@ Lições:
 Herança:
 - Dog e Cat herdam de Animal.
 - WrongCat herda de WrongAnimal para ilustrar o comportamento sem polimorfismo.
+
 Polimorfismo:
 - Uso de métodos virtuais para permitir que classes derivadas redefinam o comportamento.
+
 Métodos Virtuais:
 - Permitem chamadas polimórficas, onde o método chamado depende do tipo dinâmico do objeto (não apenas do tipo estático).
+
 Demonstração de Testes:
 - Comparar chamadas de método com e sem polimorfismo.
 Polimorfismo (Animal, Dog, Cat):
@@ -50,6 +53,7 @@ Construtores e Destrutores:
 Perguntas Possíveis
 Por que usamos virtual em makeSound?
 - Para permitir que o método seja sobrescrito em classes derivadas e chamado polimorficamente.
+
 O que é polimorfismo?
 - Capacidade de chamar métodos de classes derivadas através de um ponteiro/referência da classe base.
 
@@ -188,7 +192,7 @@ Qual é o impacto na herança de transformar Animal em uma classe abstrata?
 
 ---
 
-# BONUS
+### BONUS
 
 `ex01:`
 Por que o destrutor de Animal deve ser virtual?
