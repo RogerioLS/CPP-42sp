@@ -65,3 +65,124 @@ Qual a diferença prática entre WrongCat e Cat?
 
 ---
 
+Ex01:  I don’t want to set the world on fire
+
+O Que Este Exercício Quer Ensinar
+
+Propósito: Este exercício visa aprofundar o entendimento sobre polimorfismo em C++ e os conceitos de gerenciamento de memória. Ensina como implementar herança complexa e como gerenciar adequadamente recursos alocados dinamicamente, como ponteiros.
+
+Lições Aprendidas
+Polimorfismo e Virtualização
+Polimorfismo Dinâmico:
+- Utilizando métodos virtuais (virtual) para permitir que as subclasses forneçam implementações específicas.
+- Exemplo: A função makeSound() é sobrescrita nas classes Dog e Cat.
+
+Destrutores Virtuais:
+- Garante que o destrutor correto seja chamado para objetos alocados dinamicamente, mesmo quando acessados por um ponteiro para a classe base.
+
+Encapsulamento e Herança
+Atributos Protegidos:
+- O atributo type da classe Animal é protegido, permitindo que as subclasses acessem diretamente, mas mantendo o encapsulamento para usuários externos.
+
+Herança:
+- A classe Dog e a classe Cat herdam da classe Animal e sobrescrevem comportamentos.
+
+Gerenciamento de Recursos
+Alocação Dinâmica:
+- As classes Dog e Cat possuem um ponteiro para a classe Brain, que é criado com new.
+Desalocação Segura:
+- O destrutor das classes Dog e Cat chamam explicitamente delete para liberar a memória da instância de Brain.
+
+Cópias Profundas (Deep Copy):
+- Implementação de construtores de cópia e operadores de atribuição para evitar problemas de duplicação de ponteiros.
+
+```c++
+Objetivo do Exercício
+Classes Implementadas:
+Animal
+- Classe base.
+- Atributos:
+   - std::string type.
+Métodos:
+- Animal(): Construtor padrão.
+- ~Animal(): Destrutor virtual.
+- Animal(const Animal &other): Construtor de cópia.
+- Animal &operator=(const Animal &other): Operador de atribuição.
+- virtual void makeSound() const: Sobrescrevível nas subclasses.
+- std::string getType() const: Retorna o tipo do animal.
+
+Dog e Cat
+- Herdeiros de Animal.
+- Sobrescrevem:
+  - makeSound() para emitir sons específicos.
+
+Brain
+- Atributo privado das classes Dog e Cat.
+- Contém:
+  - std::string ideas[100]: Representa "ideias" do animal.
+```
+Dúvidas e Respostas Possíveis
+
+Por que usar destrutores virtuais?
+- Garante que o destrutor da subclasse seja chamado, evitando vazamento de memória.
+O que é uma cópia profunda?
+- Copia os dados apontados por ponteiros, criando novas instâncias, em vez de copiar apenas o endereço de memória.
+Por que a classe Animal não tem Brain?
+- Brain é específico para Dog e Cat. Manter a lógica na subclasse reduz a complexidade na classe base.
+Por que usamos new Brain()?
+- Para ilustrar a alocação dinâmica e permitir a prática de gerenciamento de memória.
+Qual a diferença entre type ser protected e private?
+- protected permite que classes derivadas acessem diretamente o atributo, enquanto private não.
+
+---
+
+Ex02: Abstract Class
+
+Objetivo do Exercício
+O propósito deste exercício é introduzir o conceito de classes abstratas em C++ e demonstrar como essas classes evitam que instâncias de uma classe base sejam criadas diretamente, enquanto continuam a servir como base para herança.
+
+Implementação
+O Que Deve Ser Alterado
+Tornar a classe Animal abstrata.
+- Para isso, declarar o método makeSound() como puro virtual.
+  ```c++
+  virtual void makeSound() const = 0;
+  ```
+- Um método puro virtual é declarado com = 0 e força que as subclasses implementem sua lógica.
+- Opcionalmente, renomear a classe para AAnimal para destacar que é abstrata.
+- Garantir que o restante do código funcione como antes.
+
+Resumo
+O Que Este Exercício Quer Ensinar:
+Classes Abstratas:
+- Classes que não podem ser instanciadas diretamente.
+- Servem como base para herança, forçando subclasses a implementar métodos específicos.
+Métodos Virtuais Puros:
+- São declarados com = 0.
+- Transformam a classe em abstrata e devem ser implementados nas subclasses.
+
+Perguntas Comuns
+Por que usar uma classe abstrata?
+- Para evitar instanciar classes genéricas que não têm funcionalidade completa, como Animal, e garantir que subclasses implementem métodos específicos.
+O que acontece se não implementarmos o método makeSound() na subclasse?
+- A subclasse também será abstrata e não poderá ser instanciada.
+Por que declarar makeSound() como = 0?
+- Para forçar todas as subclasses a fornecerem sua própria implementação.
+Ainda precisamos do destrutor virtual?
+- Sim, o destrutor virtual garante que o destrutor correto da subclasse será chamado.
+Qual é o impacto na herança de transformar Animal em uma classe abstrata?
+- Apenas classes que implementam todos os métodos virtuais puros podem ser instanciadas.
+
+---
+
+# BONUS
+
+ex01:
+Por que o destrutor de Animal deve ser virtual?
+- Para garantir que o destrutor da classe derivada seja chamado quando deletamos um objeto da classe derivada por meio de um ponteiro para a classe base.
+O que acontece sem virtual?
+- Apenas o destrutor da classe base será chamado, resultando em vazamentos de memória ou recursos não liberados na classe derivada.
+Por que a destruição é realizada na ordem inversa da construção?
+- Isso é necessário para garantir que os recursos sejam liberados na ordem inversa à sua alocação, evitando dependências de recursos já destruídos.
+O que é um destrutor virtual puro?
+- Um destrutor virtual puro (virtual ~Animal() = 0;) torna a classe abstrata, impedindo que instâncias da classe base sejam criadas diretamente.

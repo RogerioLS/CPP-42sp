@@ -6,7 +6,7 @@
 /*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 00:08:57 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/28 14:03:58 by roglopes         ###   ########.fr       */
+/*   Updated: 2024/12/28 12:44:44 by roglopes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,21 @@
 #include "../includes/Dog.hpp"
 #include "../includes/Cat.hpp"
 
-int main()
-{
-	const Animal* animals[4];
+int main() {
+	// Cannot instantiate AAnimal directly.
+	// Animal animal; // This line will cause a compilation error.
 
-	// half Dogs, half Cats
-	for (int i = 0; i < 4; i++)
-	{
-		if (i < 2)
-			animals[i] = new Dog();
-		else
-			animals[i] = new Cat();
-	}
+	Animal* dog = new Dog();
+	Animal* cat = new Cat();
 
-	// show sons
-	for (int i = 0; i < 4; i++)
-	{
-		animals[i]->makeSound();
-	}
+	std::cout << dog->getType() << " ";
+	dog->makeSound();
 
-	// deleting the animals
-	for (int i = 0; i < 4; i++)
-	{
-		delete animals[i];
-	}
+	std::cout << cat->getType() << " ";
+	cat->makeSound();
+
+	delete dog;
+	delete cat;
 
 	return (0);
 }
