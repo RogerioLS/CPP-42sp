@@ -49,9 +49,4 @@ jobs:
           cd CPP01
           cd ex05
           make fclean re
-      - name: Build ex06
-        run: |
-          cd CPP01
-          cd ex06
-          make fclean re
       - run: echo "🍏 This job's status is ${{ job.status }}."
