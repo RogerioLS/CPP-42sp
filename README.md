@@ -11,7 +11,6 @@
 ![Last commit](https://custom-icon-badges.demolab.com/github/last-commit/RogerioLS/CPP-42sp?logo=history&color=dark-green)
 ![Repo size](https://custom-icon-badges.demolab.com/github/repo-size/RogerioLS/CPP-42sp?logo=database)
 ![Languages](https://custom-icon-badges.demolab.com/github/languages/count/RogerioLS/CPP-42sp?logo=command-palette&color=red)
-![GitHub repo file count (file type)](https://custom-icon-badges.demolab.com/github/directory-file-count/RogerioLS/CPP-42sp%2Fsources?logo=file&label=files%20sources&color=8602b1)
 ![Discord](https://custom-icon-badges.demolab.com/discord/1114673462859006044?&logo=comments&label=testemunhas%20de%20vim&color=ffbe3a)
 ![](https://img.shields.io/github/forks/RogerioLS/CPP-42sp)
 
