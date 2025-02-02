@@ -1,0 +1,36 @@
+name: Build and Compilation CPP00
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '00 12 */15 * *'
+
+jobs:
+  build:
+    name: Build and Compilation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+      - name: Build ex00
+        run: |
+          cd CPP00
+          cd ex00
+          make fclean re
+      - name: Build ex01
+        run: |
+          cd CPP00
+          cd ex01
+          make fclean re
+      - name: Build ex02
+        run: |
+          cd CPP00
+          cd ex02
+          make fclean re
+      - run: echo "🍏 This job's status is ${{ job.status }}."
