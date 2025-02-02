@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 00:25:46 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/07 00:28:19 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/14 13:49:30 by roglopes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
  * @param weapon The weapon of the human.
  */
 HumanA::HumanA(const std::string &name, Weapon &weapon) : _name(name), _weapon(weapon){}
+
+HumanA::~HumanA(){}
 
 /**
  * @brief Makes the human attack using their weapon.

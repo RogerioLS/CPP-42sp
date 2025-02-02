@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 00:31:54 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/07 00:37:12 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/14 13:50:37 by roglopes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
  * @param name The name of the human.
  */
 HumanB::HumanB(const std::string &name) : _name(name), _weapon(NULL){}
+
+HumanB::~HumanB(){}
 
 /**
  * @brief Set the weapon of the human.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 00:15:39 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/07 00:22:33 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/14 13:50:07 by roglopes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
  * @param type The type of weapon.
  */
 Weapon::Weapon(const std::string &type) : _type(type){}
+
+Weapon::~Weapon(){}
 
 /**
  * @brief Get the type of weapon.
