@@ -41,6 +41,12 @@ Garantimos que o código funcione perfeitamente e atenda aos requisitos do proje
 - **Introdução ao C++**: classes, objetos, namespaces e boas práticas.  
 - **Objetivo**: Aprender a diferenciar entre atributos privados, públicos e o uso do `std::string`.
 
+    <details>
+    <summary><strong>🔹 Module 00 - Vetores e Matrizes</strong></summary>
+    Um vetor é uma sequência ordenada de números. Por exemplo, em 2D, temos um vetor de duas coordenadas 
+    <img src="https://latex.codecogs.com/svg.latex?[x,y]" /> 
+    </details>
+
 <details>
 <summary>Module 00 - Namespace, class, member functions, stdio stream, initialization lists, static</summary>
 
