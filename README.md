@@ -44,7 +44,7 @@ Garantimos que o código funcione perfeitamente e atenda aos requisitos do proje
     <details>
     <summary><strong>🔹 Module 00 - Vetores e Matrizes</strong></summary>
     Um vetor é uma sequência ordenada de números. Por exemplo, em 2D, temos um vetor de duas coordenadas 
-    <img src="https://latex.codecogs.com/svg.latex?[x,y]" /> 
+    <img src="https://latex.codecogs.com/svg.latex?[x,y]" />  test mais uma vez.
     </details>
 
 <details>
