@@ -6,7 +6,7 @@
 #    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 00:57:01 by codespace         #+#    #+#              #
-#    Updated: 2025/03/05 16:34:39 by codespace        ###   ########.fr        #
+#    Updated: 2025/03/05 19:29:45 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ INCLUDES	= -I includes
 
 VPATH		= sources
 FILES		= Bureaucrat.cpp \
+			Form.cpp         \
 			main.cpp         \
 
 OBJS		= $(FILES:%.cpp=$(OBJ_DIR)/%.o)

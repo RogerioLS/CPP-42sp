@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:34:54 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/05 16:22:58 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/05 19:30:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 # include <iostream>
 # include <stdexcept>
+# include "Form.hpp"
+class Form;
 
 class Bureaucrat
 {
@@ -32,6 +34,7 @@ class Bureaucrat
         int getGrade() const;
         void incrementGrade();
         void decrementGrade();
+        void signForm(Form &form);
 
         // Class Exceptions
         class GradeTooHighException : public std::exception {
@@ -48,5 +51,6 @@ class Bureaucrat
         const std::string name;
         int grade;
 
-    friend std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);
 };
+
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);

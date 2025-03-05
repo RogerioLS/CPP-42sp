@@ -1,52 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 14:34:54 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/05 16:22:58 by codespace        ###   ########.fr       */
+/*   Created: 2025/03/05 18:57:00 by codespace         #+#    #+#             */
+/*   Updated: 2025/03/05 19:23:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 # include <iostream>
-# include <stdexcept>
+# include "Bureaucrat.hpp"
+class Bureaucrat;
 
-class Bureaucrat
+class Form
 {
     public:
         //Constructors
-        Bureaucrat();
-        Bureaucrat(std::string name, int grade);
-        Bureaucrat(const Bureaucrat &other);
+        Form();
+        Form(std::string name, int gradeToSign, int gradeToExecute);
+        Form(const Form &other);
         //Assignment operator
-        Bureaucrat &operator=(const Bureaucrat &other);
+        Form &operator=(const Form &other);
         //Destructor
-        ~Bureaucrat();
+        ~Form();
 
-        // Public methods
-        std::string getName() const;
-        int getGrade() const;
-        void incrementGrade();
-        void decrementGrade();
-
-        // Class Exceptions
+        //Class Exceptions
         class GradeTooHighException : public std::exception {
-            public:
+            public: 
                 const char* what() const throw();
         };
 
         class GradeTooLowException : public std::exception {
-            public:
+            public: 
                 const char* what() const throw();
         };
+    
+        //Public methods
+        std::string getName() const;
+        bool getIsSigned() const;
+        int getGradeToSign() const;
+        int getGradeToExecute() const;
+        void beSigned(const Bureaucrat &b);
 
     private:
         const std::string name;
-        int grade;
-
-    friend std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);
+        bool isSigned;
+        const int gradeToSign;
+        const int gradeToExecute;
+        
 };
+
+std::ostream &operator<<(std::ostream &out, const Form &f);

@@ -6,11 +6,21 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:24:19 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/05 16:37:22 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/05 19:15:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
+
+void Bureaucrat::signForm(Form &form) {
+    try {
+        form.beSigned(*this);
+        std::cout << name << " signed " << form.getName() << std::endl;
+    } catch (std::exception &e) {
+        std::cout << name << " couldn’t sign " << form.getName()
+                  << " because " << e.what() << std::endl;
+    }
+}
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
     return "Grade is too high! Maximum is 1.";
