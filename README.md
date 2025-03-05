@@ -7,6 +7,7 @@
 ![CPP02](https://github.com/RogerioLS/CPP-42sp/actions/workflows/build_cpp02.yml/badge.svg)
 ![CPP03](https://github.com/RogerioLS/CPP-42sp/actions/workflows/build_cpp03.yml/badge.svg)
 ![CPP04](https://github.com/RogerioLS/CPP-42sp/actions/workflows/build_cpp04.yml/badge.svg)
+![CPP05](https://github.com/RogerioLS/CPP-42sp/actions/workflows/build_cpp05.yml/badge.svg)
 ![Static Badge](https://custom-icon-badges.demolab.com/badge/CPP-42-blue?logo=repo)
 ![42 São Paulo](https://custom-icon-badges.demolab.com/badge/42-SP-1E2952)
 ![License](https://custom-icon-badges.demolab.com/github/license/RogerioLS/CPP-42sp?logo=law&color=dark-green)
