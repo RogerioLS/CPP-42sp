@@ -213,62 +213,194 @@ Arquivos Necessários:
 <details> <summary>✅ Checklist de Correção do Ex01 - Form up, maggots!</summary>
 
 🔹 Estrutura e Implementação
+
 ✅ Makefile
-- O código deve compilar com os flags corretos: -Wall -Wextra -Werror.
+- O código deve compilar corretamente com os flags adequados: -Wall -Wextra -Werror.
 
 ✅ Classe Form
-- Existe uma classe Form corretamente definida.
+- A classe Form está implementada corretamente.
+- Atributos privados:
+    - std::string const name → Nome do formulário, constante e imutável.
+    - bool isSigned → Indica se o formulário está assinado. Inicia como false.
+    - int const gradeToSign → Grau mínimo necessário para assinar o formulário.
+    - int const gradeToExecute → Grau mínimo necessário para executar o formulário.
 
-✅ Atributos
-- O nome (name) é const e não pode ser alterado depois da criação.
-- O grau requerido para assinar a forma é const e fica entre 1 (mais alto) e 150 (mais baixo).
-- O grau requerido para executar a forma também é const e fica entre 1 (mais alto) e 150 (mais baixo).
-- A variável signed (que indica se a forma foi assinada ou não) é bool e inicialmente é false.
+✅ Validação dos Valores de Grau
+- Os valores de gradeToSign e gradeToExecute seguem as mesmas regras do Bureaucrat:
+    - 1 é o mais alto, 150 é o mais baixo.
+    - Se um grau estiver fora do intervalo permitido, são lançadas exceções:
+      - Form::GradeTooHighException se o grau for menor que 1.
+      - Form::GradeTooLowException se o grau for maior que 150.
 
 ✅ Métodos de Acesso (Getters)
-- O método getName() deve retornar o nome da forma.
-- O método getIsSigned() deve retornar se a forma foi assinada.
-- O método getGradeToSign() deve retornar o grau necessário para assinar a forma.
-- O método getGradeToExecute() deve retornar o grau necessário para executar a forma.
+- Métodos implementados corretamente para acessar os atributos privados:
+    - getName()
+    - getGradeToSign()
+    - getGradeToExecute()
+    - isFormSigned()
+
+✅ Função beSigned()
+- Assina o formulário se o Bureaucrat tiver um grau suficientemente alto (grade ≤ gradeToSign).
+- Lança Form::GradeTooLowException caso contrário.
+
+✅ Método signForm() no Bureaucrat
+- Implementado conforme especificação:
+    - Se a assinatura for bem-sucedida:
+      ```c++
+      <bureaucrat> signed <form>
+      ```
+
+    - Caso contrário, imprime uma mensagem informando o erro:
+      ```c++
+      <bureaucrat> couldn’t sign <form> because <reason>.
+      ```
 
 ✅ Sobrecarga do Operador <<
-- O operador << deve ser sobrecarregado corretamente para exibir as informações da Form no formato:
-```c++
-Form <name>, required grade to sign <signGrade>, required grade to execute <execGrade>, signed: <true/false>.
-```
-
-✅ Método beSigned()
-- O método beSigned() deve verificar se o Bureaucrat tem o grau necessário para assinar a Form e, em caso positivo, alterar o estado de signed para true.
-- Deve lançar uma exceção GradeTooLowException se o Bureaucrat não tiver o grau necessário para assinar a Form.
-
-✅ Método signForm()
-- O método signForm() da classe Bureaucrat deve chamar o método beSigned() da Form para tentar assinar a forma.
-- Se o Bureaucrat não tiver o grau necessário para assinar, deve lançar uma exceção GradeTooLowException.
+- O operador << foi sobrecarregado corretamente para exibir as informações do formulário no formato:
+  ```c++
+  <form name>, Form status: <signed/not signed>, Required grade to sign: <grade>, Required grade to execute: <grade>
+  ```
 
 ---
 
-❓ Perguntas Possíveis na Avaliação 
+❓ Possíveis Perguntas na Avaliação
+✅ Por que os atributos name, gradeToSign e gradeToExecute são const?
+- Porque esses valores nunca devem mudar após a criação do objeto.
 
-✅ Por que o nome da forma é const?
-- Para garantir que o nome da forma não seja alterado após a criação do objeto, mantendo a integridade da forma.
+✅ O que acontece se tentarmos criar um Form com um grau inválido?
+- Uma exceção será lançada (GradeTooHighException ou GradeTooLowException).
 
-✅ O que acontece se tentarmos assinar uma forma sem ter o grau necessário?
-- O programa lança uma exceção GradeTooLowException.
+✅ Por que usamos Bureaucrat::signForm() ao invés de permitir que Bureaucrat acesse diretamente beSigned()?
+- Para encapsular a lógica e fornecer um mecanismo de feedback ao usuário.
 
-✅ Qual a finalidade do método beSigned()?
-- O método verifica se o Bureaucrat tem o grau necessário para assinar a forma e, se possível, altera o estado da forma para assinada.
+✅ Por que beSigned() verifica se o formulário já foi assinado?
+- Para evitar que o formulário seja assinado mais de uma vez.
 
-✅ Por que usamos exceções no código?
-- As exceções permitem lidar com erros de forma controlada, evitando falhas inesperadas no programa e possibilitando tratamento adequado dos erros, como o grau inválido.
+✅ Qual a diferença entre beSigned() e signForm()?
+- beSigned() é um método da Form, enquanto signForm() é um método da Bureaucrat que tenta assinar uma Form.
 
-✅ Como sobrecarregamos o operador <<?
-- O operador << é sobrecarregado para permitir a exibição das informações da Form de forma legível, sem necessidade de chamar os métodos de acesso manualmente.
+✅ Por que usamos exceções em beSigned()?
+- Para garantir que o programa trate corretamente erros de permissão e não permita ações inválidas.
 
-✅ É possível declarar a sobrecarga do operador << fora da classe Form?
-- Sim, desde que a classe Form seja declarada como friend da função sobrecarregada ou seja usada a forma de implementação fora da classe com métodos de acesso público.
+✅ Como funciona a sobrecarga do operador << para Form?
+- Permite exibir informações sobre o formulário diretamente no std::cout, sem necessidade de chamar métodos individualmente.
+
+✅ O que aconteceria se beSigned() não verificasse o grau do Bureaucrat?
+- Qualquer Bureaucrat, independentemente do seu grau, poderia assinar um formulário, violando as regras do sistema.
 
 </details>
 
 > [!NOTE]
 > 🚀 Resumo Final:
 > Este exercício reforça o encapsulamento, exceções personalizadas e interação entre classes, preparando o terreno para sistemas mais complexos de hierarquia de permissões e validação de ações.
+
+---
+
+Ex01: FNo, you need form 28B, not 28C...
+
+Neste exercício, estendemos a hierarquia de `Form` tornando-a uma *classe abstrata* (``AForm``) e criamos *três novos tipos de formulários concretos*. Também adicionamos a capacidade de *executar ações reais*, verificando permissões e lançando exceções adequadas.
+
+📌 O Que Este Exercício Quer Ensinar
+Propósito:
+✅ Introduzir *classes abstratas* (`AForm`).
+✅ Explorar *herança e polimorfismo*.
+✅ Implementar *exceções ao validar permissões de execução*.
+✅ Criar diferentes *formulários que realizam ações específicas*.
+
+📖 Lições Aprendidas
+✅ Classe Abstrata (`AForm`)
+- `AForm` substitui `Form`, impedindo que objetos da classe base sejam instanciados diretamente.
+- Adicionamos o método virtual puro `execute(Bureaucrat const &executor) const = 0;`, garantindo que cada formulário concreto implemente sua própria ação.
+
+
+✅ Novas Classes Concretas de Formulário
+
+Criamos três classes derivadas que herdam de AForm, cada uma com um propósito diferente:
+
+1️⃣ ShrubberyCreationForm
+- Grau necessário: 145 (para assinar), 137 (para executar).
+- Ação: Cria um arquivo <target>_shrubbery e imprime árvores ASCII nele.🌲
+
+2️⃣ RobotomyRequestForm
+- Grau necessário: 72 (para assinar), 45 (para executar).
+- Ação: Simula um procedimento de robotização no target. O sucesso ocorre 50% das vezes, caso contrário, falha. 🤖
+
+3️⃣ PresidentialPardonForm
+- Grau necessário: 25 (para assinar), 5 (para executar).
+- Ação: Informa que o target foi perdoado por Zaphod Beeblebrox. 📜
+
+✅ Controle de Execução e Exceções
+- O formulário só pode ser executado se estiver assinado e se o Bureaucrat tiver grau suficiente.
+- Caso contrário, lança exceções:
+    - `AForm::GradeTooLowException` → Se o grau do `Bureaucrat` for muito baixo.
+    - `AForm::FormNotSignedException` → Se o formulário ainda **não foi assinado**.
+
+✅ Novo Método no Bureaucrat
+- `executeForm(AForm const &form):`
+  - Se a execução for bem-sucedida, imprime:
+    ```c++
+    <bureaucrat> executed <form>
+    ```
+  - Caso contrário, imprime uma mensagem informando o erro.
+
+📂 Declaração e Implementação
+Arquivos Necessários:
+📌 `AForm.hpp` / `AForm.cpp` → Definição e implementação da classe abstrata.
+📌 `ShrubberyCreationForm.hpp` / `.cpp` → Formulário que cria árvores.
+📌 `RobotomyRequestForm.hpp` / `.cpp` → Formulário que executa uma cirurgia robótica.
+📌 `PresidentialPardonForm.hpp` / `.cpp` → Formulário que concede perdão presidencial.
+📌 `Bureaucrat.hpp` / `.cpp` → Atualização para incluir executeForm(AForm const &form).
+📌 `main`.cpp` → Testes completos para validar comportamento e exceções.
+
+```c++
+// 📌 Objetivo: Criar um sistema de formulários executáveis com validação de permissões
+Atributos:
+- std::string const name: Nome do formulário.
+- bool isSigned: Indica se o formulário foi assinado.
+- int const gradeToSign: Grau necessário para assinar.
+- int const gradeToExecute: Grau necessário para executar.
+Métodos:
+- beSigned(Bureaucrat const &b): Assina o formulário.
+- execute(Bureaucrat const &executor) const = 0; (virtual puro)
+- Implementações específicas para cada formulário:
+  - ShrubberyCreationForm: Cria um arquivo com árvores ASCII.
+  - RobotomyRequestForm: Tem 50% de chance de sucesso ao "robotizar" o alvo.
+  - PresidentialPardonForm: Concede perdão presidencial.
+- Bureaucrat:
+  - executeForm(AForm const &form): Tenta executar o formulário.
+```
+
+❓ Perguntas Possíveis
+
+✅ Por que transformamos `Form` em uma classe abstrata `AForm`?
+- Para garantir que **não seja instanciada diretamente**, pois apenas os formulários concretos devem ser criados.
+
+✅ O que significa `execute(Bureaucrat const &executor) const = 0;`?
+- Indica que `execute` é virtual puro, forçando as subclasses a implementarem suas próprias versões.
+
+✅ O que acontece se um `Bureaucrat` tentar executar um formulário sem permissão?
+- Será lançada uma exceção `GradeTooLowException`.
+
+✅ E se um formulário não estiver assinado e for executado?
+- Lançará `FormNotSignedException`, impedindo a execução.
+
+✅ Como funciona `executeForm(AForm const &form)` no `Bureaucrat`?
+- Tenta executar o formulário, capturando possíveis exceções e imprimindo mensagens apropriadas.
+
+✅ Por que `RobotomyRequestForm` tem 50% de chance de sucesso?
+- Para simular um processo falho, utilizando `rand()` para determinar aleatoriamente o resultado.
+
+✅ Por que `ShrubberyCreationForm` escreve um arquivo?
+- Para demonstrar que formulários podem executar ações no sistema, como criar relatórios ou logs.
+
+✅ Como podemos testar se as exceções estão funcionando corretamente?
+- Criando `Bureaucrats` com diferentes níveis e tentando assinar/executar formulários com permissões insuficientes.
+
+<details> <summary>✅ Checklist de Correção do Ex02 - </summary>
+
+</details>
+
+> [!NOTE]
+> 🚀 Resumo Final:
+> Este exercício reforça conceitos essenciais de **herança, polimorfismo e exceções** em C++.
+> Implementamos **três tipos de formulários**, adicionamos verificações rigorosas de permissão e criamos um **mecanismo robusto de execução** no `Bureaucrat`.
