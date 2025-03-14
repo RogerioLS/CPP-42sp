@@ -396,7 +396,70 @@ Métodos:
 ✅ Como podemos testar se as exceções estão funcionando corretamente?
 - Criando `Bureaucrats` com diferentes níveis e tentando assinar/executar formulários com permissões insuficientes.
 
-<details> <summary>✅ Checklist de Correção do Ex02 - </summary>
+<details> <summary>✅ Checklist de Correção do Ex02 - "No, you need form 28B, not 28C..." </summary>
+
+🔹 Estrutura e Implementação
+
+✅ Makefile
+- O código compila corretamente com os flags exigidos: `-Wall -Wextra -Werror`.
+
+✅ Classes Implementadas
+- AForm (antes Form) → Classe base abstrata.
+- ShrubberyCreationForm → Cria um arquivo `<target>_shrubbery` com árvores ASCII.
+- RobotomyRequestForm → Realiza uma "robotomização" com 50% de chance de sucesso.
+- PresidentialPardonForm → Concede perdão presidencial a um alvo específico.
+
+✅ Atributos e Construtores
+- Cada formulário recebe apenas um parâmetro, que é seu target.
+- Os formulários possuem os requisitos de assinatura/execução corretos:
+  - ShrubberyCreationForm → `sign 145, exec 137`
+  - RobotomyRequestForm → `sign 72, exec 45`
+  - PresidentialPardonForm → `sign 25, exec 5`
+
+✅ Método execute(Bureaucrat const &executor)
+- Verifica se o formulário está assinado antes da execução.
+- Verifica se o Bureaucrat tem um nível suficiente para executar.
+- Caso contrário, lança exceções apropriadas.
+
+✅ Execução Polimórfica
+- `execute()` pode ser implementado de duas formas aceitas:
+  - Forma 1: `execute()` é puro em AForm, e cada subclasse implementa sua própria verificação.
+  - Forma 2: `execute()` faz as verificações em AForm e chama um método específico nas subclasses.
+
+✅ Método Bureaucrat::executeForm()
+- Tenta executar um formulário e imprime o resultado:
+  - "Alice executed Home"
+  - "Charlie couldn't execute Home because Grade is too low!"
+  - "Bender has been successfully robotomized!"
+
+---
+
+❓ Perguntas Possíveis na Avaliação
+
+✅ Por que AForm é uma classe abstrata?
+- Para impedir a criação direta de objetos do tipo AForm, já que um formulário deve ter uma implementação específica.
+
+✅ Por que precisamos de exceções ao executar um formulário?
+- Para garantir que apenas burocratas qualificados possam executar os formulários.
+
+✅ Onde colocamos as verificações de assinatura e nível do Bureaucrat?
+- Pode ser feito dentro de execute() da classe base ou dentro de cada subclasse.
+
+✅ Como garantimos que o Bureaucrat pode assinar/executar um formulário?
+- Assinatura: Verificamos se grade do Bureaucrat é maior ou igual ao requerido.
+- Execução: Verificamos se grade do Bureaucrat é maior ou igual ao necessário e se o formulário já foi assinado.
+
+✅ Por que Bureaucrat::executeForm usa uma referência para AForm?
+- Para permitir polimorfismo e chamar execute() independentemente do tipo específico do formulário.
+
+✅ Por que ShrubberyCreationForm usa std::ofstream?
+- Para criar um arquivo `<target>_shrubbery` contendo árvores ASCII.
+
+✅ Por que RobotomyRequestForm tem um resultado aleatório?
+- Para simular a aleatoriedade de uma cirurgia robótica (50% de chance de sucesso).
+
+✅ Qual a importância da herança neste exercício?
+- Permite reutilizar código e padronizar a estrutura dos formulários enquanto mantém funcionalidades específicas para cada um.
 
 </details>
 
@@ -404,3 +467,6 @@ Métodos:
 > 🚀 Resumo Final:
 > Este exercício reforça conceitos essenciais de **herança, polimorfismo e exceções** em C++.
 > Implementamos **três tipos de formulários**, adicionamos verificações rigorosas de permissão e criamos um **mecanismo robusto de execução** no `Bureaucrat`.
+
+---
+
