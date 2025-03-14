@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:28:48 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/05 19:16:59 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/13 20:52:43 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int main() {
         std::cout << b1 << std::endl;
         std::cout << f1 << std::endl;
 
-        b1.signForm(f1); // Deve falhar
-        b1.signForm(f2); // Deve falhar
+        b1.signForm(f1);
+        b1.signForm(f2);
 
         Bureaucrat b2("Bob", 20);
-        b2.signForm(f1); // Deve assinar
-        b2.signForm(f2); // Deve assinar
+        b2.signForm(f1);
+        b2.signForm(f2);
 
         std::cout << f1 << std::endl;
         std::cout << f2 << std::endl;
