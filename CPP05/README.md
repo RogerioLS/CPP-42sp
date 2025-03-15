@@ -605,3 +605,109 @@ Arquivos Necessários:
 > [!NOTE]
 > 🚀 Resumo Final:
 > Este exercício reforça o uso de factory methods, alocação dinâmica e polimorfismo em C++. Ele prepara o caminho para um código mais escalável e organizado, evitando estruturas de decisão desnecessárias. 🚀
+
+---
+
+<details> <summary>🏛️ Resumo Geral do CPP05 - Bureaucracia e Exceções</summary>
+
+O módulo CPP05 introduz conceitos essenciais de exceções, herança, polimorfismo, fábricas de objetos e métodos virtuais. O foco é estruturar um sistema burocrático onde formulários são assinados e executados por burocratas, seguindo regras rígidas.
+
+✅ Ex00: Mommy, when I grow up, I want to be a bureaucrat!
+📌 Objetivo
+Criar a classe Bureaucrat, que representa um funcionário público com:
+- Nome constante (não pode ser alterado após a criação).
+- Grau numérico entre 1 (maior hierarquia) e 150 (menor hierarquia).
+
+📚 Conceitos Aprendidos
+- Encapsulamento: Nome imutável e grau acessado por getters.
+- Exceções personalizadas (GradeTooHighException e GradeTooLowException).
+- Sobrecarga de operadores (<<) para exibição de objetos.
+- Try-catch para manipulação de erros.
+
+📌 Implementação
+- Incremento e decremento do grau com verificação de limites.
+- Lançamento de exceções quando necessário.
+- Saída formatada do Bureaucrat usando <<.
+
+❓ Perguntas na Avaliação
+✅ Por que o nome do Bureaucrat é const?
+✅ O que acontece se o grau for inválido?
+✅ Como a herança de exceções (std::exception) facilita o tratamento de erros?
+✅ Por que sobrecarregamos operator<<?
+
+---
+
+✅ Ex01: Form up, maggots!
+📌 Objetivo
+Adicionar a classe Form, que representa documentos burocráticos. Cada formulário:
+- Tem um nome constante.
+- Possui um status de assinatura (bool isSigned).
+- Exige um grau mínimo para ser assinado e executado.
+
+📚 Conceitos Aprendidos
+- Relação entre classes: Bureaucrat pode assinar formulários.
+- Exceções (GradeTooLowException) para evitar assinaturas inválidas.
+- Uso de getters para acessar atributos privados.
+
+📌 Implementação
+- Método beSigned(): Permite um Bureaucrat assinar um formulário se tiver um grau suficiente.
+- Método signForm(): Imprime mensagens como:
+  - "Alice signed FormA"
+  - "Bob couldn’t sign FormB because grade is too low."
+
+❓ Perguntas na Avaliação
+✅ Por que Form tem atributos const?
+✅ Como garantir que apenas Bureaucrats qualificados assinem formulários?
+✅ Como signForm() melhora a legibilidade do código?
+
+---
+
+✅ Ex02: No, you need form 28B, not 28C...
+📌 Objetivo
+Transformar Form em uma classe abstrata (AForm) e criar três tipos de formulários concretos:
+- ShrubberyCreationForm → Cria um arquivo <target>_shrubbery com árvores ASCII.
+- RobotomyRequestForm → Tem 50% de chance de "robotomizar" o alvo.
+- PresidentialPardonForm → Concede perdão presidencial ao alvo.
+
+📚 Conceitos Aprendidos
+- Classes abstratas e polimorfismo (AForm não pode ser instanciada diretamente).
+- Execução condicional: O formulário só pode ser executado se estiver assinado e o Bureaucrat tiver um grau suficiente.
+- Método virtual execute() para especialização nas subclasses.
+
+📌 Implementação
+- Método execute() em AForm → Verifica se o formulário pode ser executado.
+- Cada subclasse implementa sua ação específica.
+- Método executeForm() no Bureaucrat → Tenta executar um formulário e imprime o resultado.
+
+❓ Perguntas na Avaliação
+✅ Por que AForm é abstrata?
+✅ Onde colocamos as verificações de assinatura e nível?
+✅ Por que ShrubberyCreationForm usa std::ofstream?
+✅ Qual a importância do polimorfismo neste exercício?
+
+---
+
+✅ Ex03: At least this beats coffee-making
+📌 Objetivo
+Criar a classe Intern, que automatiza a criação de formulários usando um Factory Pattern.
+
+📚 Conceitos Aprendidos
+- Fábrica de objetos (Factory Pattern) para criar formulários dinamicamente.
+- Uso de ponteiros para métodos para evitar if/else desnecessários.
+
+📌 Implementação
+- Método makeForm() → Recebe o nome do formulário e retorna um novo objeto AForm.
+- Se o nome for inválido, imprime um erro e retorna NULL.
+- Utilização de ponteiros para métodos membros em arrays para evitar múltiplos if/else.
+
+❓ Perguntas na Avaliação
+✅ Por que Intern não tem atributos?
+✅ O que acontece se makeForm() recebe um nome inválido?
+✅ Como testar se Intern funciona corretamente?
+✅ Por que usamos ponteiros para métodos membros em vez de if/else?
+
+🚀 Resumo Final
+O módulo CPP05 reforça conceitos fundamentais de exceções, polimorfismo, sobrecarga de operadores, fábricas de objetos e execução condicional. Ele simula um sistema burocrático real, onde formulários devem ser assinados e executados seguindo regras específicas. Cada exercício adiciona mais camadas de complexidade, desde a criação de um Bureaucrat até a automação com um Intern.
+
+Este aprendizado prepara o caminho para estruturas mais avançadas, como design patterns, gestão de memória dinâmica e modelagem orientada a objetos.💡
+</details>
