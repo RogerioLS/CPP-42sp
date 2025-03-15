@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:34:54 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/05 16:22:58 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/15 13:34:39 by roglopes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ class Bureaucrat
         const std::string name;
         int grade;
 
-    friend std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);
 };
+
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);
