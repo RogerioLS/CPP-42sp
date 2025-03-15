@@ -5,7 +5,9 @@ Ex01: Mommy, when I grow up, I want to be a bureaucrat!
 Neste exercício, implementamos a classe Bureaucrat, que representa um funcionário público com um nome imutável e um grau numérico de 1 a 150. Aprendemos a lançar exceções personalizadas quando o grau está fora dos limites, a sobrecarga do operador de inserção (`<<`), e a manipulação de exceções com `try-catch`.
 
 📌 O Que Este Exercício Quer Ensinar
+
 Propósito:
+
 Introdução a exceções em C++, criando classes de erro personalizadas.
 Uso de métodos públicos de manipulação de dados privados.
 Implementação de operadores sobrecarregados, como <<, para formatar saídas.
@@ -27,9 +29,13 @@ Lições:
 
 
 📂 Declaração e Implementação
+
 Arquivos Necessários
+
 📌 Bureaucrat.hpp - Declaração da classe e suas exceções.
+
 📌 Bureaucrat.cpp - Implementação dos métodos e operadores.
+
 📌 main.cpp - Testes para verificar o funcionamento correto da classe.
 
 ```c++
@@ -138,13 +144,19 @@ Ex01: Form up, maggots!
 Neste exercício, expandimos a burocracia do módulo anterior, introduzindo a classe Form. Um formulário tem um nome imutável, um status de assinatura (bool isSigned), e requisitos de grau para assinatura e execução. Aprendemos a integrar classes com relacionamento forte, aplicar exceções ao validar permissões e sobrecarregar operadores.
 
 📌 O Que Este Exercício Quer Ensinar
+
 Propósito:
+
 ✅ Aplicar exceções para verificar permissões de acesso.
+
 ✅ Criar relações entre classes (Bureaucrat interagindo com Form).
+
 ✅ Aplicar encapsulamento e boas práticas de design OO.
+
 ✅ Utilizar a sobrecarga de operadores para formatação de saída.
 
 📖 Lições Aprendidas
+
 ✅ Encapsulamento & Atributos Constantes
 - O nome do formulário é const, garantindo que nunca será alterado após a criação.
 - Os requisitos de grau (gradeToSign e gradeToExecute) também são const.
@@ -170,10 +182,15 @@ Propósito:
   ```
 
 📂 Declaração e Implementação
+
 Arquivos Necessários:
+
 📌 `Form.hpp` - Declaração da classe Form.
+
 📌 `Form.cpp` - Implementação da classe Form.
+
 📌 `Bureaucrat.hpp/.cpp` - Atualização para incluir signForm().
+
 📌 `main.cpp` - Testes unitários.
 
 ```c++
@@ -301,13 +318,19 @@ Ex02: FNo, you need form 28B, not 28C...
 Neste exercício, estendemos a hierarquia de `Form` tornando-a uma *classe abstrata* (``AForm``) e criamos *três novos tipos de formulários concretos*. Também adicionamos a capacidade de *executar ações reais*, verificando permissões e lançando exceções adequadas.
 
 📌 O Que Este Exercício Quer Ensinar
+
 Propósito:
+
 ✅ Introduzir *classes abstratas* (`AForm`).
+
 ✅ Explorar *herança e polimorfismo*.
+
 ✅ Implementar *exceções ao validar permissões de execução*.
+
 ✅ Criar diferentes *formulários que realizam ações específicas*.
 
 📖 Lições Aprendidas
+
 ✅ Classe Abstrata (`AForm`)
 - `AForm` substitui `Form`, impedindo que objetos da classe base sejam instanciados diretamente.
 - Adicionamos o método virtual puro `execute(Bureaucrat const &executor) const = 0;`, garantindo que cada formulário concreto implemente sua própria ação.
@@ -344,12 +367,19 @@ Criamos três classes derivadas que herdam de AForm, cada uma com um propósito 
   - Caso contrário, imprime uma mensagem informando o erro.
 
 📂 Declaração e Implementação
+
 Arquivos Necessários:
+
 📌 `AForm.hpp` / `AForm.cpp` → Definição e implementação da classe abstrata.
+
 📌 `ShrubberyCreationForm.hpp` / `.cpp` → Formulário que cria árvores.
+
 📌 `RobotomyRequestForm.hpp` / `.cpp` → Formulário que executa uma cirurgia robótica.
+
 📌 `PresidentialPardonForm.hpp` / `.cpp` → Formulário que concede perdão presidencial.
+
 📌 `Bureaucrat.hpp` / `.cpp` → Atualização para incluir executeForm(AForm const &form).
+
 📌 `main`.cpp` → Testes completos para validar comportamento e exceções.
 
 ```c++
@@ -475,12 +505,17 @@ Ex03: "At least this beats coffee-making"
 Neste exercício, adicionamos a classe `Intern`, um estagiário capaz de criar formulários automaticamente. Isso reduz o trabalho dos burocratas, permitindo que eles deleguem a criação de formulários sem precisar digitá-los manualmente.
 
 📌 O Que Este Exercício Quer Ensinar
+
 Propósito:
+
 ✅ Introduzir fábricas de objetos em C++.
+
 ✅ Demonstrar polimorfismo e alocação dinâmica sem necessidade de if/else excessivos.
+
 ✅ Implementar um sistema de fábrica (factory method) para criar instâncias de formulários.
 
 📖 Lições Aprendidas
+
 ✅ Uso do Padrão Factory
 - Intern cria formulários dinamicamente com makeForm(), retornando um ponteiro para um objeto do tipo correto.
 
@@ -494,9 +529,13 @@ Propósito:
 - Como os formulários são criados dinamicamente, devem ser deletados corretamente para evitar vazamentos de memória.
 
 📂 Declaração e Implementação
+
 Arquivos Necessários:
+
 📌 `Intern.hpp` → Declaração da classe Intern e do método makeForm().
+
 📌 `Intern.cpp` → Implementação da classe Intern.
+
 📌 `main.cpp` → Testes para validar o comportamento correto.
 
 ```c++
@@ -613,7 +652,9 @@ Arquivos Necessários:
 O módulo CPP05 introduz conceitos essenciais de exceções, herança, polimorfismo, fábricas de objetos e métodos virtuais. O foco é estruturar um sistema burocrático onde formulários são assinados e executados por burocratas, seguindo regras rígidas.
 
 ✅ Ex00: Mommy, when I grow up, I want to be a bureaucrat!
+
 📌 Objetivo
+
 Criar a classe Bureaucrat, que representa um funcionário público com:
 - Nome constante (não pode ser alterado após a criação).
 - Grau numérico entre 1 (maior hierarquia) e 150 (menor hierarquia).
@@ -630,15 +671,21 @@ Criar a classe Bureaucrat, que representa um funcionário público com:
 - Saída formatada do Bureaucrat usando <<.
 
 ❓ Perguntas na Avaliação
+
 ✅ Por que o nome do Bureaucrat é const?
+
 ✅ O que acontece se o grau for inválido?
+
 ✅ Como a herança de exceções (std::exception) facilita o tratamento de erros?
+
 ✅ Por que sobrecarregamos operator<<?
 
 ---
 
 ✅ Ex01: Form up, maggots!
+
 📌 Objetivo
+
 Adicionar a classe Form, que representa documentos burocráticos. Cada formulário:
 - Tem um nome constante.
 - Possui um status de assinatura (bool isSigned).
@@ -656,14 +703,19 @@ Adicionar a classe Form, que representa documentos burocráticos. Cada formulár
   - "Bob couldn’t sign FormB because grade is too low."
 
 ❓ Perguntas na Avaliação
+
 ✅ Por que Form tem atributos const?
+
 ✅ Como garantir que apenas Bureaucrats qualificados assinem formulários?
+
 ✅ Como signForm() melhora a legibilidade do código?
 
 ---
 
 ✅ Ex02: No, you need form 28B, not 28C...
+
 📌 Objetivo
+
 Transformar Form em uma classe abstrata (AForm) e criar três tipos de formulários concretos:
 - ShrubberyCreationForm → Cria um arquivo <target>_shrubbery com árvores ASCII.
 - RobotomyRequestForm → Tem 50% de chance de "robotomizar" o alvo.
@@ -680,15 +732,22 @@ Transformar Form em uma classe abstrata (AForm) e criar três tipos de formulár
 - Método executeForm() no Bureaucrat → Tenta executar um formulário e imprime o resultado.
 
 ❓ Perguntas na Avaliação
+
 ✅ Por que AForm é abstrata?
+
 ✅ Onde colocamos as verificações de assinatura e nível?
+
 ✅ Por que ShrubberyCreationForm usa std::ofstream?
+
 ✅ Qual a importância do polimorfismo neste exercício?
+
 
 ---
 
 ✅ Ex03: At least this beats coffee-making
+
 📌 Objetivo
+
 Criar a classe Intern, que automatiza a criação de formulários usando um Factory Pattern.
 
 📚 Conceitos Aprendidos
@@ -701,9 +760,13 @@ Criar a classe Intern, que automatiza a criação de formulários usando um Fact
 - Utilização de ponteiros para métodos membros em arrays para evitar múltiplos if/else.
 
 ❓ Perguntas na Avaliação
+
 ✅ Por que Intern não tem atributos?
+
 ✅ O que acontece se makeForm() recebe um nome inválido?
+
 ✅ Como testar se Intern funciona corretamente?
+
 ✅ Por que usamos ponteiros para métodos membros em vez de if/else?
 
 🚀 Resumo Final
