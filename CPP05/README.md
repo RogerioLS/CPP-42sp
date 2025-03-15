@@ -1,6 +1,6 @@
 ### CPP05: Resumo, Conceitos, Propósitos e Perguntas Respondidas
 
-Ex00: Mommy, when I grow up, I want to be a bureaucrat!
+Ex01: Mommy, when I grow up, I want to be a bureaucrat!
 
 Neste exercício, implementamos a classe Bureaucrat, que representa um funcionário público com um nome imutável e um grau numérico de 1 a 150. Aprendemos a lançar exceções personalizadas quando o grau está fora dos limites, a sobrecarga do operador de inserção (`<<`), e a manipulação de exceções com `try-catch`.
 
@@ -67,7 +67,7 @@ Arquivos Necessários
 - Sim, mas precisaríamos de métodos getName() e getGrade(), pois friend permite acesso direto aos atributos privados.
 
 <details>
-<summary>✅ Checklist de Correção do Ex00 - Mommy, when I grow up, I want to be a bureaucrat!</summary>
+<summary>✅ Checklist de Correção do Ex01 - Mommy, when I grow up, I want to be a bureaucrat!</summary>
 
 🔹 Estrutura e Implementação
 ✅ Makefile
@@ -207,7 +207,7 @@ Arquivos Necessários:
 ✅ O que acontece se um Bureaucrat de grau 100 tentar assinar um Form que requer grau 50?
 - Uma exceção GradeTooLowException será lançada.
 
-✅ Podemos declarar operator<< fora da classe sem friend?
+✅ Podemos declarar operator << fora da classe sem friend?
 - Sim, desde que usemos métodos getName(), getGradeToSign() e getGradeToExecute(), pois friend permite acesso direto a atributos privados.
 
 <details> <summary>✅ Checklist de Correção do Ex01 - Form up, maggots!</summary>
@@ -296,7 +296,7 @@ Arquivos Necessários:
 
 ---
 
-Ex01: FNo, you need form 28B, not 28C...
+Ex02: FNo, you need form 28B, not 28C...
 
 Neste exercício, estendemos a hierarquia de `Form` tornando-a uma *classe abstrata* (``AForm``) e criamos *três novos tipos de formulários concretos*. Também adicionamos a capacidade de *executar ações reais*, verificando permissões e lançando exceções adequadas.
 
@@ -470,3 +470,138 @@ Métodos:
 
 ---
 
+Ex03: "At least this beats coffee-making"
+
+Neste exercício, adicionamos a classe `Intern`, um estagiário capaz de criar formulários automaticamente. Isso reduz o trabalho dos burocratas, permitindo que eles deleguem a criação de formulários sem precisar digitá-los manualmente.
+
+📌 O Que Este Exercício Quer Ensinar
+Propósito:
+✅ Introduzir fábricas de objetos em C++.
+✅ Demonstrar polimorfismo e alocação dinâmica sem necessidade de if/else excessivos.
+✅ Implementar um sistema de fábrica (factory method) para criar instâncias de formulários.
+
+📖 Lições Aprendidas
+✅ Uso do Padrão Factory
+- Intern cria formulários dinamicamente com makeForm(), retornando um ponteiro para um objeto do tipo correto.
+
+✅ Evitando "If-Else Forest"
+- Em vez de if/else para verificar cada tipo de formulário, usamos arrays de ponteiros para métodos membros.
+
+✅ Tratamento de Entrada Inválida
+- Se o nome do formulário for desconhecido, o intern deve exibir uma mensagem de erro clara.
+
+✅ Uso Correto de Alocação Dinâmica
+- Como os formulários são criados dinamicamente, devem ser deletados corretamente para evitar vazamentos de memória.
+
+📂 Declaração e Implementação
+Arquivos Necessários:
+📌 `Intern.hpp` → Declaração da classe Intern e do método makeForm().
+📌 `Intern.cpp` → Implementação da classe Intern.
+📌 `main.cpp` → Testes para validar o comportamento correto.
+
+```c++
+// 📌 Objetivo: Criar uma classe Intern que gera formulários dinamicamente.
+// Métodos:
+// - makeForm(std::string formName, std::string target):
+//   - Retorna um novo formulário baseado no nome fornecido.
+//   - Se o formulário não existir, imprime um erro.
+// Atributos:
+// - Nenhum! Interns são simples e sem características próprias.
+```
+
+❓ Perguntas Possíveis
+
+✅ Por que usamos um array de ponteiros para funções em vez de if/else?
+- Para evitar código desorganizado e difícil de manter. O array nos permite mapear nomes de formulários diretamente para suas classes correspondentes.
+
+✅ Como funciona o padrão Factory Method neste exercício?
+- O método makeForm() recebe um nome e retorna um objeto apropriado, seguindo o conceito de fábrica de objetos.
+
+✅ O que acontece se passarmos um nome inválido para makeForm()?
+- O Intern imprime um erro informando que o formulário não existe.
+
+✅ Por que retornamos um ponteiro ao invés de um objeto por valor?
+- Para permitir polimorfismo e evitar a cópia desnecessária de objetos.
+
+✅ O que acontece se esquecermos de deletar os formulários criados?
+- Teremos memory leaks, pois os formulários são criados com new e não serão desalocados automaticamente.
+
+✅ Como garantir que Bureaucrat execute corretamente os formulários criados pelo Intern?
+- Após makeForm(), o Bureaucrat pode assinar e executar o formulário normalmente, desde que tenha os requisitos de grade.
+
+
+<details> <summary>✅ Checklist de Correção do Ex03 - At least this beats coffee-making</summary>
+
+🔹 Estrutura e Implementação
+
+✅ Makefile
+- O código compila corretamente com os flags exigidos: `-Wall -Wextra -Werror`.
+
+✅ Classe Intern
+- Existe uma classe Intern implementada corretamente.
+- A classe Intern não tem nome, nem atributos específicos.
+- Implementa o método makeForm(), responsável por criar os formulários.
+
+✅ Método Intern::makeForm()
+- Recebe dois parâmetros:
+  - std::string formName → O nome do formulário a ser criado.
+  - std::string target → O alvo do formulário.
+- Retorna um ponteiro para um novo objeto AForm correspondente ao nome passado.
+- Caso o nome seja inválido, imprime um erro e retorna NULL.
+
+✅ Uso de Ponteiros para Métodos
+- A função makeForm() utiliza array de ponteiros para métodos membros, evitando uma sequência de if/else.
+- Se o aluno utilizou if/else if/else, isso deve ser considerado errado.
+
+✅ Criação Correta dos Formulários
+- Intern::makeForm() pode criar os três tipos de formulários:
+  - "shrubbery creation" → Cria ShrubberyCreationForm.
+  - "robotomy request" → Cria RobotomyRequestForm.
+  - "presidential pardon" → Cria PresidentialPardonForm.
+- Se o nome do formulário for inválido, imprime:
+  ```c++
+  std::cout << "Error: Form name '" << formName << "' not recognized." << std::endl;
+  ```
+- Se for válido, imprime:
+  ```c++
+  std::cout << "Intern creates " << formName << std::endl;
+  ```
+
+✅ Uso correto do Bureaucrat
+- Bureaucrat::executeForm(AForm &form) pode ser usado para testar a execução dos formulários criados pelo Intern.
+
+---
+
+❓ Perguntas Possíveis na Avaliação
+
+✅ Por que a classe Intern não possui atributos?
+- O estagiário (Intern) não precisa armazenar informações; sua única função é criar formulários.
+
+✅ Por que usamos um array de ponteiros para funções em makeForm()?
+- Para evitar um código extenso e pouco legível com múltiplos if/else.
+
+✅ O que acontece se passarmos um nome de formulário inválido para makeForm()?
+- O método imprime uma mensagem de erro e retorna NULL.
+
+✅ O que acontece se esquecermos de deletar o formulário criado?
+- O programa pode ter vazamento de memória, pois makeForm() aloca dinamicamente os formulários com new.
+
+✅ Como garantir que os formulários são criados corretamente?
+- Devemos testar makeForm() passando diferentes strings e verificar se os objetos criados correspondem às expectativas.
+
+✅ Como testar se a implementação do Intern está correta?
+- Criar um Intern, chamar makeForm() para diferentes formulários e verificar se a saída no terminal e os objetos retornados estão corretos.
+
+✅ Como um Bureaucrat pode executar um formulário criado pelo Intern?
+- Primeiro, Intern::makeForm() cria um formulário.
+- Depois, Bureaucrat::signForm() assina o formulário.
+- Finalmente, Bureaucrat::executeForm() executa o formulário.
+
+✅ Por que utilizamos polimorfismo neste exercício?
+- makeForm() retorna um ponteiro para AForm, permitindo manipular qualquer tipo de formulário através da classe base.
+
+</details>
+
+> [!NOTE]
+> 🚀 Resumo Final:
+> Este exercício reforça o uso de factory methods, alocação dinâmica e polimorfismo em C++. Ele prepara o caminho para um código mais escalável e organizado, evitando estruturas de decisão desnecessárias. 🚀
