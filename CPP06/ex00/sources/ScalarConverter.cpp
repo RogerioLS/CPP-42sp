@@ -1,0 +1,91 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/15 18:18:12 by roglopes          #+#    #+#             */
+/*   Updated: 2025/03/16 15:24:44 by roglopes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/ScalarConverter.hpp"
+
+ScalarConverter::ScalarConverter() {}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &copy)
+{
+	*this = copy;
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy)
+{
+	(void) copy;
+	return (*this);
+}
+
+ScalarConverter::~ScalarConverter() {}
+
+void	printAsChar(double n)
+{
+	if (std::isnan(n) || std::isinf(n) || n < std::numeric_limits<char>::min() || n > std::numeric_limits<char>::max())
+		std::cout << "char: impossible" << std::endl;
+	else if (std::isprint(static_cast<char>(n)))
+		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
+	else 
+		std::cout << "char: Non displayable" << std::endl;
+}
+
+void	printAsInt(double n)
+{
+	if (std::isnan(n) || std::isinf(n) || n < std::numeric_limits<int>::min() ||
+	n > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(n) << std::endl;
+}
+
+void	printAsFloat(double n)
+{
+	if (std::isnan(n) || std::isinf(n) || n < -std::numeric_limits<float>::max() ||
+	n > std::numeric_limits<float>::max())
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(n) << (static_cast<int>(n) == n ? ".0f" : "f") << std::endl;
+}
+
+void	printAsDouble(double n)
+{
+	if (std::isnan(n) || std::isinf(n) || n < -std::numeric_limits<double>::max() ||
+	n > std::numeric_limits<double>::max())
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << static_cast<double>(n) << (static_cast<int>(n) == n ? ".0" : "") << std::endl;
+}
+
+void ScalarConverter::convert(const std::string& str)
+{
+	double n;
+	char *endptr = NULL;
+
+	if (str.size() == 1 && !std::isdigit(str[0]))
+		n = static_cast<char>(str[0]);
+	else if (str == "-inff" || str == "+inff" || str == "nanf")
+		n = std::strtof(str.c_str(), &endptr);
+	else if (str == "-inf" || str == "+inf" || str == "inf" || str == "nan")
+		n = std::strtod(str.c_str(), &endptr);
+	else
+	{
+		n = std::strtod(str.c_str(), &endptr);
+		if (*endptr != '\0') {
+			std::cout << "Invalid input" << std::endl;
+			return ;
+		}
+	}
+
+	printAsChar(n);
+	printAsInt(n);
+	printAsFloat(n);
+	printAsDouble(n);
+}
