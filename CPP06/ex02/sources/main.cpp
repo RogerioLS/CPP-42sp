@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A.hpp                                              :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 23:36:50 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/21 23:39:21 by codespace        ###   ########.fr       */
+/*   Created: 2025/03/21 23:43:22 by codespace         #+#    #+#             */
+/*   Updated: 2025/03/21 23:43:35 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef A_HPP
-#define A_HPP
-
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+#include <iostream>
 
-class A : public Base {};
+int main() {
+    Base* obj = generate();
+    
+    std::cout << "Identificando via ponteiro: ";
+    identify(obj);
 
-#endif
+    std::cout << "Identificando via referência: ";
+    identify(*obj);
+
+    delete obj;
+    return (0);
+}
