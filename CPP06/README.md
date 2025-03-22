@@ -1,4 +1,4 @@
-### CPP05: Resumo, Conceitos, Propósitos e Perguntas Respondidas
+### CPP06 - Resumo, Conceitos, Propósitos e Perguntas Respondidas
 
 📌 CPP06 - ex00: Conversion of Scalar Types
 
@@ -296,7 +296,124 @@ O método deserialize() utiliza reinterpret_cast corretamente para converter de 
 
 >[!NOTE]
 >🚀 Resumo Final:
-`Este exercício nos ensina a serializar e desserializar objetos em C++ utilizando o tipo `uintptr_t`. A serialização converte um ponteiro em um valor inteiro, e a desserialização reconverte esse valor de volta para um ponteiro. A implementação segura dessas operações é essencial para manipulação de dados em memória, e o uso de métodos estáticos e do tipo `uintptr_t` torna o código eficiente e robusto.
+> `Este exercício nos ensina a serializar e desserializar objetos em C++ utilizando o tipo `uintptr_t`. A serialização converte um ponteiro em um valor inteiro, e a desserialização reconverte esse valor de volta para um ponteiro. A implementação segura dessas operações é essencial para manipulação de dados em memória, e o uso de métodos estáticos e do tipo `uintptr_t` torna o código eficiente e robusto.
 
 ---
 
+📌 CPP06 - ex02: Identificação do Tipo Real
+
+Neste exercício, implementamos um sistema para identificar o tipo real de um objeto dinâmico em C++, sem utilizar std::typeinfo. O objetivo é criar uma classe base polimórfica e três classes derivadas, além de funções que geram e identificam esses tipos corretamente.
+
+🚀 O Que Este Exercício Ensina?
+
+🔹 Propósito
+- Compreender e utilizar casting dinâmico para identificar tipos reais de objetos.
+- Implementar herança e polimorfismo em C++.
+- Trabalhar com funções de identificação tanto por ponteiro quanto por referência.
+- Manipular alocação dinâmica sem causar memory leaks.
+
+🔹 Lições Importantes
+
+✅ Uso de dynamic_cast
+- Como typeid é proibido, usamos dynamic_cast para determinar o tipo real de um objeto polimórfico.
+
+✅ Conversão Segura com dynamic_cast
+- dynamic_cast tenta converter um ponteiro para um tipo derivado e retorna nullptr se a conversão falhar.
+- No caso de referências, um bad_cast é lançado se a conversão for inválida.
+
+✅ Geração Aleatória de Tipos
+- A função generate() cria instâncias aleatórias de A, B ou C e retorna um ponteiro Base*.
+
+✅ Identificação de Tipo
+- Implementamos duas versões da função identify():
+  - Uma que recebe um ponteiro e utiliza dynamic_cast para testar conversões.
+  - Outra que recebe uma referência e usa dynamic_cast com try-catch.
+
+📂 Declaração e Implementação
+
+📌 Arquivos Necessários
+- `Base.hpp` - Declaração da classe base.
+- `Base.cpp` - Implementação da classe base.
+- `A.hpp`, `B.hpp`, `C.hpp` - Declaração das classes derivadas.
+- `A.cpp`, `B.cpp`, `C.cpp` - Implementação das classes derivadas.
+- `main.cpp` - Testes e execução do programa.
+
+📌 Explicação das Operações
+
+1️⃣ Uso de dynamic_cast
+- dynamic_cast<A*>(p): Tenta converter p para A*. Se falhar, retorna nullptr.
+- dynamic_cast<A&>(p): Se a conversão falhar, lança uma exceção.
+
+2️⃣ Evitando Memory Leaks
+- Como generate() usa new, devemos chamar delete no final do programa.
+
+3️⃣ Por Que dynamic_cast?
+- Ele permite identificar classes derivadas em tempo de execução, essencial quando trabalhamos com herança e polimorfismo.
+
+❓ Perguntas Possíveis na Avaliação
+
+✅ Por que dynamic_cast é usado aqui?
+- Porque precisamos identificar o tipo real de um objeto polimórfico.
+
+✅ Por que usamos try-catch na versão por referência?
+- Se a conversão falhar, dynamic_cast lança uma exceção, então capturamos isso para evitar um crash.
+
+✅ Por que generate() usa std::rand()?
+- Para criar instâncias aleatórias de A, B ou C, garantindo testes variados.
+
+✅ Por que o destrutor da Base é virtual?
+- Para permitir a destruição correta dos objetos derivados quando deletados via Base*.
+
+✅ Como evitar memory leaks nesse exercício?
+- Garantindo que qualquer objeto criado com new seja deletado no final do programa.
+
+<details> <summary>✅ Checklist de Correção do Ex02 - Identify Real Type</summary>
+
+🔹 Estrutura e Implementação
+
+✅ Uso de dynamic_cast
+- O código faz uso correto de dynamic_cast para identificar o tipo real da instância.
+
+✅ Identificação via Ponteiro (Base*)
+- A função identify(Base* p) utiliza dynamic_cast<A*>(p), dynamic_cast<B*>(p), e dynamic_cast<C*>(p).
+- O código verifica corretamente se o retorno do dynamic_cast é NULL antes de imprimir o tipo correspondente.
+
+✅ Identificação via Referência (Base&)
+- A função identify(Base& p) utiliza dynamic_cast<A&>(p), dynamic_cast<B&>(p), e dynamic_cast<C&>(p).
+- O código faz uso de try-catch para capturar std::bad_cast e evitar falhas de execução.
+
+✅ Geração de Objetos Aleatórios
+- A função generate() usa std::rand() e std::time(0) corretamente para criar uma instância aleatória de A, B ou C.
+
+✅ Destrutor Virtual em Base
+- O destrutor de Base é declarado como virtual, garantindo a deleção correta de objetos polimórficos.
+
+✅ Memória e Gerenciamento
+- O objeto alocado em generate() é corretamente desalocado com delete no main(), evitando vazamentos de memória.
+
+✅ Compilação e Execução
+- O código compila corretamente sem erros ou warnings.
+- A execução identifica corretamente os tipos das instâncias geradas.
+
+❓ Perguntas Possíveis na Avaliação
+
+✅ O que dynamic_cast faz e por que é usado aqui?
+- dynamic_cast verifica se um objeto polimórfico pode ser convertido para um tipo derivado com segurança. Se a conversão for inválida, retorna nullptr (para ponteiros) ou lança std::bad_cast (para referências).
+
+✅ Por que precisamos de um destrutor virtual em Base?
+- Para garantir que os destrutores das classes derivadas sejam chamados corretamente quando um objeto é deletado via ponteiro para Base.
+
+✅ Por que identify(Base&) usa try-catch, mas identify(Base*) não?
+- dynamic_cast retorna nullptr para ponteiros inválidos, permitindo uma verificação simples.
+- Para referências, dynamic_cast lança std::bad_cast, então precisamos de um bloco try-catch para capturar a exceção.
+
+✅ O que aconteceria se Base não tivesse um destrutor virtual?
+- Se deletarmos um objeto Base* que aponta para uma instância de A, B ou C, apenas o destrutor de Base seria chamado, possivelmente causando vazamento de memória ou comportamento indefinido.
+
+✅ Por que (void)dynamic_cast<A&>(p); é usado dentro do try-catch?
+- (void) evita warnings de variável não utilizada, pois apenas verificamos a conversão sem armazenar o resultado.
+</details>
+
+> [!NOTE]
+> 🚀 Resumo Final
+> Este exercício ensina como usar conversões dinâmicas em C++ para identificar classes derivadas em tempo de execução. Ele reforça conceitos de polimorfismo, dynamic_cast, e alocação dinâmica segura, evitando memory leaks e garantindo um código robusto e eficiente.
