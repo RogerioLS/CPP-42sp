@@ -7,6 +7,7 @@ Neste exercício, implementamos a classe ScalarConverter, que converte uma strin
 - int
 - float
 - double
+
 Além disso, lidamos com casos especiais como NaN e infinitos. Este exercício também reforça o uso correto de casts em C++.
 
 🚀 O Que Este Exercício Ensina?
@@ -22,13 +23,16 @@ Além disso, lidamos com casos especiais como NaN e infinitos. Este exercício t
 ✅ Conversão entre Tipos
 - Converte `std::string` para diferentes tipos escalares.
 - Usa **casting explícito** para evitar perda de precisão e erros de conversão.
+
 ✅ Tipo de Casting em C++
 - `static_cast` → Conversões seguras entre tipos conhecidos.
 - `reinterpret_cast` → Conversões de ponteiros (não utilizado aqui).
 - `const_cast` → Remove const de um tipo (não utilizado aqui).
 - `dynamic_cast` → Conversão entre classes polimórficas (não aplicável neste exercício).
+
 ✅ Detecção de Tipo
 - Determina se a entrada é um char, int, float ou double antes de converter.
+
 ✅ Lidando com Casos Especiais
 - `nan` (`Not a Number`)
 - `+inf` e `-inf` (valores infinitos)
