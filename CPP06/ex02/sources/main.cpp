@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 23:43:22 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/21 23:43:35 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/29 15:08:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 #include "C.hpp"
 #include <iostream>
 
+/**
+ * @brief Main function to test the polymorphic behavior of the Base class and its derived classes.
+ * 
+ * @return int
+ */
 int main() {
     Base* obj = generate();
     
-    std::cout << "Identificando via ponteiro: ";
+    std::cout << "Identify via pointer: ";
     identify(obj);
 
-    std::cout << "Identificando via referência: ";
+    std::cout << "Identify via reference: ";
     identify(*obj);
 
     delete obj;
