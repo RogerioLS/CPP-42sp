@@ -3,30 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roglopes <roglopes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 18:18:12 by roglopes          #+#    #+#             */
-/*   Updated: 2025/03/16 15:24:44 by roglopes         ###   ########.fr       */
+/*   Updated: 2025/03/29 14:47:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ScalarConverter.hpp"
 
+/**
+ * @brief Construct a new Scalar Converter:: Scalar Converter object
+ */
 ScalarConverter::ScalarConverter() {}
 
+/**
+ * @brief Construct a new Scalar Converter:: Scalar Converter object
+ * 
+ * @param copy
+ */
 ScalarConverter::ScalarConverter(const ScalarConverter &copy)
 {
 	*this = copy;
 }
 
+/**
+ * @brief Copy assignment operator
+ * 
+ * @param copy
+ * @return ScalarConverter&
+ */
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy)
 {
 	(void) copy;
 	return (*this);
 }
 
+/**
+ * @brief Destroy the Scalar Converter:: Scalar Converter object
+ */
 ScalarConverter::~ScalarConverter() {}
 
+/**
+ * @brief Print the value as char
+ * 
+ * @param n
+ */
 void	printAsChar(double n)
 {
 	if (std::isnan(n) || std::isinf(n) || n < std::numeric_limits<char>::min() || n > std::numeric_limits<char>::max())
@@ -37,6 +59,11 @@ void	printAsChar(double n)
 		std::cout << "char: Non displayable" << std::endl;
 }
 
+ /**
+  * @brief Print the value as int
+  * 
+  * @param n
+  */
 void	printAsInt(double n)
 {
 	if (std::isnan(n) || std::isinf(n) || n < std::numeric_limits<int>::min() ||
@@ -46,6 +73,11 @@ void	printAsInt(double n)
 		std::cout << "int: " << static_cast<int>(n) << std::endl;
 }
 
+/**
+ * @brief Print the value as float
+ * 
+ * @param n
+ */
 void	printAsFloat(double n)
 {
 	if (std::isnan(n) || std::isinf(n) || n < -std::numeric_limits<float>::max() ||
@@ -55,6 +87,11 @@ void	printAsFloat(double n)
 		std::cout << "float: " << static_cast<float>(n) << (static_cast<int>(n) == n ? ".0f" : "f") << std::endl;
 }
 
+/**
+ * @brief Print the value as double
+ * 
+ * @param n
+ */
 void	printAsDouble(double n)
 {
 	if (std::isnan(n) || std::isinf(n) || n < -std::numeric_limits<double>::max() ||
@@ -64,6 +101,15 @@ void	printAsDouble(double n)
 		std::cout << "double: " << static_cast<double>(n) << (static_cast<int>(n) == n ? ".0" : "") << std::endl;
 }
 
+/**
+ * @brief Convert the value from string to char, int, float and double
+ * 
+ * @param str
+ * 
+ * @details This function will convert the value from string to char, int, float and double.
+ * 			It will check if the value is valid and if it is not, it will print "impossible".
+ * 
+ */
 void ScalarConverter::convert(const std::string& str)
 {
 	double n;
