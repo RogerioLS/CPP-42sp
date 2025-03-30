@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 16:48:12 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/22 17:23:29 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/30 17:49:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 
 template <typename T, typename Func>
-void iter (T *array, size_t length, Func function)
+void iter(T *array, size_t length, Func function)
 {
     for (size_t i = 0; i < length; i++)
         function(array[i]);
