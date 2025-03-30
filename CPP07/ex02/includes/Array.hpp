@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 18:14:25 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/30 17:54:40 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/30 19:08:59 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,20 @@
 # include <iostream>
 # include <exception>
 
+/**
+ * @brief A template class that represents a dynamic array.
+ * 
+ * @tparam T The type of the elements in the array.
+ * 
+ * This class provides a dynamic array implementation with basic operations
+ * such as construction, destruction, assignment, and element access.
+ */
 template <typename T>
 class Array
 {
     private:
-        T*				_data;
-        unsigned int	_size;
+        T*				_data;      // Pointer to the array data
+        unsigned int	_size;      // Size of the array
 
     public:
         // Constructors
