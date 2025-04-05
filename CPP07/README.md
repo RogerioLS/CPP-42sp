@@ -463,5 +463,3 @@ Arquivos Necessários:
 > 🚀 Resumo Final:
 > Este exercício ensina a criar uma classe template genérica em C++, explorando conceitos como gerenciamento de memória, sobrecarga de operadores e tratamento de exceções.
 > A classe Array é flexível, reutilizável e segura, garantindo que os dados sejam manipulados corretamente e que erros sejam tratados de forma adequada.
-
-
