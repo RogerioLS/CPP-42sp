@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 00:35:56 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/04 00:45:28 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/05 17:16:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int main() {
         std::cout << "Shortest Span: " << sp.shortestSpan() << std::endl;
         std::cout << "Longest Span: " << sp.longestSpan() << std::endl;
 
-        // Testando com um range de números
         Span bigSpan(10000);
         std::vector<int> range(10000);
         for (int i = 0; i < 10000; ++i)

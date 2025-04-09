@@ -3,7 +3,7 @@
 ### Metas de Aprendizado
 
 #### **Fundamentos da Programação Orientada a Objetos (POO)**
-A POO é um paradigma de programação que organiza o código em **objetos**, cada um contendo **atributos** (dados) e **métodos** (funções que manipulam os dados). Esse modelo facilita a manutenção, reutilização e escalabilidade do código.
+A POO é um paradigma de programação que organiza o código em **objetos**, cada um contendo **atributos** (dados) e **métodos** (funções que manipulam os dados). Esse modelo facilita a manutenção, reutilização e escalabilidade do código.  
 
 #### **Compreender a diferença entre**:
 - **Atributos públicos e privados**:  
