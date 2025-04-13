@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:53:41 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/13 19:12:36 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/13 19:42:15 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ int RPN::evaluate(const std::string &expression)
             std::istringstream tokenStream(token);
             if (!(tokenStream >> number))
                 throw std::runtime_error("Error: invalid token");
+            
+            if (number < 0 || number >= 10)
+                throw std::runtime_error("Error");
             operands.push(number);
         }
     }
