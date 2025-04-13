@@ -375,6 +375,189 @@ O `std::stack` foi escolhido porque:
 
 ---
 
+📌 CPP09 - ex02: PmergeMe - Algoritmo Ford-Johnson
 
+🚀 Propósito do Exercício
+O objetivo deste exercício é implementar o algoritmo de ordenação Ford-Johnson (Merge-Insert Sort) usando diferentes contêineres da STL. O programa deve:
+
+1. Receber uma sequência de números inteiros positivos como argumentos.
+2. Ordenar esses números usando pelo menos dois contêineres diferentes (std::vector e std::list).
+3. Adicionar um terceiro contêiner (std::deque) para comparação adicional.
+4. Exibir a sequência antes e depois da ordenação.
+5. Mostrar o tempo de execução para cada contêiner.
+6. Comparar a eficiência entre os diferentes contêineres.
+
+📌 Regras e Restrições
+1. Nome do Programa:
+   - O programa deve ser chamado PmergeMe.
+2. Entrada:
+   - O programa recebe uma sequência de números inteiros positivos como argumentos.
+3. Saída:
+   - A sequência antes e depois da ordenação.
+   - O tempo de processamento para cada contêiner.
+4. Uso de Contêineres:
+   - É obrigatório usar pelo menos dois contêineres diferentes da STL.
+   - Escolhemos implementar com std::vector, std::list e std::deque para uma comparação mais completa.
+5. Erros:
+   - O programa deve exibir Error no stderr para entradas inválidas.
+6. Compilação:
+   - O código deve ser compilado com as flags -Wall -Wextra -Werror -std=c++98.
+
+📌 O Que é o Algoritmo Ford-Johnson (Merge-Insert Sort)?
+O algoritmo Ford-Johnson é um sofisticado algoritmo de ordenação por comparação que combina aspectos de merge sort e insertion sort. Ele foi projetado para minimizar o número de comparações no pior caso, aproximando-se do limite teórico inferior.
+
+Principais Características:
+- Divide os elementos em pares e ordena cada par.
+- Ordena recursivamente os elementos maiores de cada par.
+- Usa a sequência de Jacobsthal para determinar a ordem ótima de inserção dos elementos menores.
+- Teoricamente, é um dos algoritmos de ordenação baseados em comparação mais eficientes.
+
+📂 Estrutura do Projeto
+Arquivos Principais:
+1. `PmergeMe.hpp`:
+   - Declaração da classe PmergeMe.
+   - Define os contêineres e métodos para ordenação.
+
+2. `PmergeMe.cpp`:
+   - Implementação básica da classe PmergeMe.
+   - Métodos para processar argumentos e exibir resultados.
+
+3. `MergeInsertVector.cpp`:
+   - Implementação do algoritmo Ford-Johnson para std::vector.
+
+4. `MergeInsertDeque.cpp`:
+   - Implementação do algoritmo Ford-Johnson para std::deque.
+
+5. `main.cpp`:
+   - Função principal do programa.
+   - Lê os argumentos e passa para a classe PmergeMe.
+
+📌 Passo a Passo do Algoritmo Ford-Johnson
+1️⃣ Formação de Pares
+- Os elementos são agrupados em pares.
+- Cada par é ordenado internamente, com o maior elemento na primeira posição.
+- Se houver um número ímpar de elementos, o último elemento é separado para inserção posterior.
+
+2️⃣ Extração dos Elementos Maiores
+- O elemento maior de cada par é extraído para formar uma nova sequência.
+- Os elementos menores são mantidos associados aos seus pares originais.
+
+3️⃣ Ordenação Recursiva
+- A sequência dos elementos maiores é ordenada recursivamente usando o mesmo algoritmo.
+- A recursão termina quando a sequência tem 1 ou 0 elementos.
+
+4️⃣ Inserção Estratégica usando a Sequência de Jacobsthal
+- A sequência de Jacobsthal (0, 1, 1, 3, 5, 11, 21, 43, ...) determina a ordem de inserção dos elementos menores.
+- O resultado começa com o menor elemento do primeiro par seguido pelo elemento maior correspondente.
+- Os demais elementos menores são inseridos na sequência seguindo a ordem de Jacobsthal, usando busca binária para encontrar a posição correta.
+
+5️⃣ Inserção do Elemento Ímpar
+- Se houver um elemento ímpar, ele é inserido na posição correta usando busca binária.
+
+📌 A Sequência de Jacobsthal e Sua Importância
+A sequência de Jacobsthal é definida pela recorrência:
+- J(0) = 0
+- J(1) = 1
+- J(n) = J(n-1) + 2*J(n-2) para n > 1
+
+Os primeiros números são: 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, ...
+
+Esta sequência é crucial para a eficiência do algoritmo Ford-Johnson porque:
+- Determina uma ordem de inserção que minimiza o número total de comparações.
+- Distribui as inserções de forma a reduzir o custo amortizado de cada inserção.
+- Permite que o algoritmo atinja um limite superior teórico de comparações próximo do ótimo.
+
+📌 Exemplo de Funcionamento
+Para a entrada: `42 17 35 9 81 63 26 58 74 11 5`
+
+**Passo 1: Formação de Pares**
+- Par 1: (42, 17) Par 2: (35, 9) Par 3: (81, 63) Par 4: (58, 26) Par 5: (74, 11) Elemento ímpar: 5
+
+**Passo 2: Extração dos Elementos Maiores**
+- Elementos maiores: [42, 35, 81, 58, 74]
+
+**Passo 3: Ordenação Recursiva dos Elementos Maiores**
+- Elementos maiores ordenados: [35, 42, 58, 74, 81]
+
+**Passo 4: Inserção usando a Sequência de Jacobsthal**
+- Inicialização: [17, 35] Índices de Jacobsthal: 1, 3, 2, 4
+    - Inserir par 2 (índice 1): [9, 17, 35, 42]
+    - Inserir par 4 (índice 3): [9, 17, 26, 35, 42, 58]
+    - Inserir par 3 (índice 2): [9, 17, 26, 35, 42, 58, 63, 81]
+    - Inserir par 5 (índice 4): [9, 11, 17, 26, 35, 42, 58, 63, 74, 81]
+
+**Passo 5: Inserção do Elemento Ímpar**
+- Resultado final: [5, 9, 11, 17, 26, 35, 42, 58, 63, 74, 81]
+
+
+📌 Comparação de Desempenho dos Contêineres
+Ao implementar o algoritmo Ford-Johnson com três contêineres diferentes, observamos diferenças significativas de desempenho:
+
+Para uma sequência de 3000 números aleatórios:
+```cpp
+Time to process a range of 3000 elements with std::Vector : 16357.00000 us
+Time to process a range of 3000 elements with std::Deque : 18871.00000 us
+```
+
+Análise:
+1. **std::vector**: Mais rápido devido ao acesso aleatório eficiente e excelente localidade de cache.
+2. **std::deque**: Desempenho intermediário, combinando acesso aleatório com inserções mais eficientes que o vector.
+
+📌 Argumentação para Escolha de Contêineres
+1️⃣ Por que usar diferentes contêineres no ex02 (PmergeMe)?
+
+Propósito do Exercício
+No ex02, o objetivo é implementar o algoritmo Ford-Johnson com diferentes contêineres para comparar sua eficiência. Escolhemos:
+
+- **std::vector**: Por suas características de acesso rápido e uso eficiente da memória.
+- **std::deque**: Como um meio-termo entre vector e list.
+
+Por que std::vector é mais eficiente para este algoritmo?
+1. **Acesso Aleatório O(1)**:
+   - Fundamental para a busca binária (std::lower_bound) usada nas inserções.
+   - Permite encontrar a posição correta de inserção em O(log n) comparações.
+
+2. **Localidade de Cache**:
+   - Os elementos são armazenados contiguamente na memória.
+   - Melhora significativamente o desempenho devido a menos cache misses.
+
+3. **Suporte a Algoritmos da STL**:
+   - Permite uso direto de std::lower_bound, otimizado para contêineres de acesso aleatório.
+
+Por que incluir std::deque na comparação?
+1. **Características Híbridas**:
+   - Combina acesso aleatório com inserções eficientes nas extremidades.
+   - Fornece um interessante ponto de comparação intermediário.
+
+2. **Estrutura em Blocos**:
+   - Armazena elementos em blocos de memória contígua.
+   - Evita realocações completas durante o crescimento.
+
+Exemplo de Uso dos Contêineres no Código
+O algoritmo Ford-Johnson se beneficia fortemente da busca binária para inserção, implementada de forma diferente para cada contêiner:
+
+Para std::vector e std::deque:
+```cpp
+std::vector<int>::iterator smallerIt = std::lower_bound(result.begin(), result.end(), smallerElement);
+result.insert(smallerIt, smallerElement);
+```
+
+📌 Como testar:
+```cpp
+# Teste com poucos números
+./PmergeMe 3 5 9 7 4
+
+# Teste com debug
+./PmergeMe --debug 3 5 9 7 4
+
+# Teste com números gerados aleatoriamente
+./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+
+# Teste com entrada inválida
+./PmergeMe -1 2
+
+# Teste com entrada vazia
+./PmergeMe
+```
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Ford-janson.gif/250px-Ford-janson.gif)
