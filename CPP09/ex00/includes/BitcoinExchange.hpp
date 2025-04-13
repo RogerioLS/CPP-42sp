@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 00:57:26 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/10 01:24:48 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/13 19:10:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sstream>
 # include <stdexcept>
 
-# define DB_FILE "../data/data.csv"
+# define DB_FILE "data.csv"
 
 /**
  * @file BitcoinExchange.hpp

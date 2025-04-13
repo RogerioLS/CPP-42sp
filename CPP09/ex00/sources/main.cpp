@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 00:58:56 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/10 00:16:06 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/13 19:09:23 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 
     BitcoinExchange btc;
     try {
-        btc.loadDatabase(DB_FILE); // Substitua "data.csv" pelo caminho correto do arquivo de base de dados.
+        btc.loadDatabase(DB_FILE);
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return (1);
@@ -34,19 +34,15 @@ int main(int argc, char** argv) {
 
     std::string line;
     if (std::getline(inputFile, line)) {
-        if (line.find("date | value") != std::string::npos) {
-            // Ignora o cabeçalho
+        if (line.find("date | value") != std::string::npos) 
             std::cout << "Header ignored: " << line << std::endl;
-        } else {
-            // Se a primeira linha não for o cabeçalho, processe-a
-            inputFile.seekg(0); // Volta para o início do arquivo
-        }
+        else
+            inputFile.seekg(0);
     }
 
     while (std::getline(inputFile, line)) {
-        if (line.empty()) {
-            continue; // Ignora linhas em branco
-        }
+        if (line.empty())
+            continue ;
 
         std::istringstream ss(line);
         std::string date, value;
@@ -61,25 +57,21 @@ int main(int argc, char** argv) {
                 std::stringstream ssValue(value);
                 double amount;
                 ssValue >> amount;
-                if (ssValue.fail()) {
+                if (ssValue.fail())
                     throw std::runtime_error("Error: invalid value => " + value);
-                }
-
-                if (amount < 0) {
+                if (amount < 0)
                     throw std::runtime_error("Error: not a positive number.");
-                }
-                if (amount > 1000) {
+                if (amount > 1000)
                     throw std::runtime_error("Error: too large a number");
-                }
 
                 double rate = btc.getExchangeRate(date);
                 std::cout << date << " => " << value << " = " << rate * amount << std::endl;
             } catch (const std::exception& e) {
                 std::cerr << e.what() << std::endl;
             }
-        } else {
+        } 
+        else
             std::cerr << "Error: bad input => " << line << std::endl;
-        }
     }
 
     return (0);
