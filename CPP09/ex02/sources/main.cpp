@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:08:09 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/11 22:16:34 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/13 19:14:31 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ int main(int argc, char **argv) {
     
     try {
         PmergeMe sorter;
-        
         // Enable debug mode if requested
         if (debugMode)
             sorter.setDebugMode(true);
-        
         // Process arguments starting at the correct index
         sorter.processArgs(argv + (startIndex - 1));
         sorter.displayResults(sorter.getVector().size());

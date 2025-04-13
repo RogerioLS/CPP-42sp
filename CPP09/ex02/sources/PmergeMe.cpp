@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:59:23 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/13 18:27:57 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/13 19:17:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void PmergeMe::parseArgs(char *argv[])
             if (uniqueValues.find(num) != uniqueValues.end())
             {
                 debugPrint(YELLOW + std::string("Warning: Duplicate value found: ") + token);
-                //throw std::runtime_error(RED + std::string("Error") + RESET);
+                continue ;
             }
             uniqueValues.insert(num);
 

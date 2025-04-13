@@ -6,22 +6,13 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:42:16 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/13 18:23:36 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/13 19:14:00 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-/**
- * @brief ANSI color codes for terminal output.
- * Verde: Sucesso e confirmações
- * Amarelo: Avisos e informações de processo
- * Azul: Resultados e estatísticas
- * Ciano: Mensagens de debug
- * Vermelho: Erros e exceções
- * Magenta: Informações sobre operações específicas
- */
 # define RESET   "\033[0m"
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
