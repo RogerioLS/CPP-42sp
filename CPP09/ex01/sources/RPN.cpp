@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:53:41 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/11 17:55:24 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/13 19:12:36 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,7 @@ int RPN::evaluate(const std::string &expression)
     while (iss >> token)
     {
         if (token.size() == 1 && isOperator(token[0]))
-        {
             applyOperator(token[0]);
-        }
         else
         {
             int number;
