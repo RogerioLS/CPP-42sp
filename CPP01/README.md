@@ -243,3 +243,4 @@ Como lidamos com entradas inválidas?
 
 Por que exibimos mensagens acima do nível especificado?
 - Para imitar um sistema de log real, onde mensagens mais críticas também são exibidas.
+
