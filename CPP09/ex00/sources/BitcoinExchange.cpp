@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 00:57:47 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/10 00:25:52 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/26 20:13:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void BitcoinExchange::loadDatabase(const std::string& filename)
 double BitcoinExchange::getExchangeRate(const std::string &date) const
 {
     std::map<std::string, double>::const_iterator it = exchangeRates.lower_bound(date);
-    // Se a data não for encontrada e não houver datas anteriores
+    // If the date is not found and there are no previous dates
     if (it == exchangeRates.begin() && (it == exchangeRates.end() || it->first != date)) {
-        return 0; // Retorna 0 se nenhuma data anterior existir
+        return 0; // Returns 0 if no previous date exists
     }
 
-    // Se a data não for encontrada, use a data anterior
+    // If date not found, use previous date
     if (it == exchangeRates.end() || it->first != date) {
         --it;
     }
