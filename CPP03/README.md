@@ -22,6 +22,7 @@ Controle de Recursos:
 Uso de Referências Constantes:
 - Passagem eficiente de strings como parâmetro com const std::string&.
 
+
 ```c++
 Objetivo
 Criar uma classe ClapTrap que simula um personagem com os seguintes componentes:
