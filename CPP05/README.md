@@ -6,6 +6,7 @@ Neste exercício, implementamos a classe Bureaucrat, que representa um funcioná
 
 📌 O Que Este Exercício Quer Ensinar
 
+
 Propósito:
 
 Introdução a exceções em C++, criando classes de erro personalizadas.
