@@ -12,6 +12,7 @@ Além disso, lidamos com casos especiais como NaN e infinitos. Este exercício t
 
 🚀 O Que Este Exercício Ensina?
 
+
 🔹 Propósito
 - Entender como converter diferentes tipos de dados em C++.
 - Aprender sobre **type casting** (conversão de tipos).
