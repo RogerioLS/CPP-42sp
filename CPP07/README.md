@@ -7,6 +7,7 @@ Neste exercício, implementamos templates de funções para operações genéric
 - min → Retorna o menor entre dois valores (se forem iguais, retorna o segundo).
 - max → Retorna o maior entre dois valores (se forem iguais, retorna o segundo).
 
+
 Todas essas funções devem ser implementadas como templates, permitindo que sejam usadas com qualquer tipo de dado que suporte operadores de comparação.
 
 🚀 O Que Este Exercício Ensina?
